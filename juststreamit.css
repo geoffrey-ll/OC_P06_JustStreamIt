@@ -1,0 +1,45 @@
+body
+{background-color: #353535;
+font-family: Cambria, "Trebuchet MS", Arial, Verdana, sans-serif;
+color: #64b164;}
+
+.flex_box_column
+{display: flex;}
+
+.flex_box_raw
+{display: flex;
+flex-direction: raw;}
+
+.logo_site
+{height: 150px;}
+
+
+#content_header_site
+{justify-content: center;}
+
+#header_site
+{background-color: #212121;
+width: 1000px;
+justify-content: space-between;
+align-items: flex-end;}
+
+
+.option_nav_site
+{margin: 0 50px 17px 0;}
+
+a
+{text-decoration: none;}
+
+a:visited
+{color: #64b164;
+}
+
+
+/* temporaire */
+
+.temporaire
+{border: 1px green solid;
+height: 1px;}
+
+.logo_site
+{border: 1px red solid;}
