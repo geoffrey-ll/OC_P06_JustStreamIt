@@ -1,45 +1,98 @@
+
+/* Generality */
 body
 {background-color: #353535;
 font-family: Cambria, "Trebuchet MS", Arial, Verdana, sans-serif;
-color: #64b164;}
+color: #64b164;
+margin-top: 20px;}
 
 .flex_box_column
-{display: flex;}
-
-.flex_box_raw
 {display: flex;
-flex-direction: raw;}
+flex-direction: column}
+
+.flex_box_row
+{display: flex;
+flex-direction: row;}
+
+.center
+{align-items: center;}
 
 .logo_site
 {height: 150px;}
 
 
-#content_header_site
-{justify-content: center;}
+/* Relating to parts */
+.width_1000
+{width: 1000px;}
 
+
+/* Relating to categorys */
+.margin_category
+{margin: 20px 0;}
+
+
+/* Relating to header site */
 #header_site
 {background-color: #212121;
-width: 1000px;
 justify-content: space-between;
 align-items: flex-end;}
 
-
 .option_nav_site
 {margin: 0 50px 17px 0;}
+
+
+/* Category : Best film */
+#best_film
+{color: black;
+text-align: justify;}
+
+#infos_best_film
+{margin-right: 30px;}
+
+#poster_best_film
+{max-height: 400px;
+width: auto;}
+
+#title_best_film
+{text-align: center;
+margin-bottom: 60px;
+font-size: 2em;
+text-decoration: underline double;}
+
+#button_best_film
+{background: #33337A;
+color: rgb(180,180,180);
+padding: 3px;
+border: 4px #33337A outset;
+border-radius: 20px / 30px;
+margin-bottom: 30px;}
+
+
+
+/* À ranger */
+.synopsis
+{font-size: 1.1em;
+text-indent: 40px;}
+
+
+
+
+
 
 a
 {text-decoration: none;}
 
 a:visited
-{color: #64b164;
-}
+{color: #64b164;}
 
 
-/* temporaire */
+/*  */
 
-.temporaire
-{border: 1px green solid;
-height: 1px;}
+.temporaire_green
+{border: 1px green solid;}
 
-.logo_site
+.temporaire_red
 {border: 1px red solid;}
+
+.temporaire_yellow
+{border: 1px yellow solid;}
