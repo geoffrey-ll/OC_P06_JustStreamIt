@@ -25,57 +25,104 @@ flex-direction: row;}
 .width_1000
 {width: 1000px;}
 
+    /* Relating to header site */
+    #header_site
+    {background-color: #212121;
+    justify-content: space-between;
+    align-items: flex-end;}
 
-/* Relating to categorys */
-.margin_category
-{margin: 20px 0;}
+    .option_nav_site
+    {margin: 0 50px 17px 0;}
 
+    /* Relating to categorys */
+    .margin_category
+    {margin: 20px 0;}
 
-/* Relating to header site */
-#header_site
-{background-color: #212121;
-justify-content: space-between;
-align-items: flex-end;}
+        /* Relating to nav arrows*/
+        .nav_art_generality
+        {width: 20px;
+        height: 32px;
+        background-color: black;}
 
-.option_nav_site
-{margin: 0 50px 17px 0;}
+        .arrow_left
+        {clip-path: polygon(100% 100%, 100% 0, 0 50%);}
 
+        .arrow_right
+        {clip-path: polygon(0 0, 0 100%, 100% 50%);}
 
-/* Category : Best film */
-#best_film
-{color: black;
-text-align: justify;}
+        .pave
+        {clip-path: polygon(100% 25%, 0% 25%, 0 75%, 100% 75%);}
 
-#infos_best_film
-{margin-right: 30px;}
+        .nav_films_left
+        {margin-right: 9px;}
 
-#poster_best_film
-{max-height: 400px;
-width: auto;}
+        .nav_films_right
+        {margin-left: 9px;}
 
-#title_best_film
-{text-align: center;
-margin-bottom: 60px;
-font-size: 2em;
-text-decoration: underline double;}
+        /* Category : Best film */
+        #best_film
+        {color: black;
+        text-align: justify;}
 
-#button_best_film
-{background: #33337A;
-color: rgb(180,180,180);
-padding: 3px;
-border: 4px #33337A outset;
-border-radius: 20px / 30px;
-margin-bottom: 30px;}
+        #infos_best_film
+        {margin-right: 30px;}
 
+        #poster_best_film
+        {max-height: 400px;
+        width: auto;}
+
+        #title_best_film
+        {text-align: center;
+        margin-bottom: 60px;
+        font-size: 2em;
+        text-decoration: underline double;}
+
+        #button_best_film
+        {background: #33337A;
+        color: rgb(180,180,180);
+        padding: 3px;
+        border: 4px #33337A outset;
+        border-radius: 20px / 30px;
+        margin-bottom: 30px;}
+
+        /* Other category*/
+        .title_category
+        {text-align: center;
+        color: black;
+        font-size: 1.8em;
+        margin: 50px 0;
+        text-decoration: underline;}
+
+        .nav_n_films_category
+        {align-items: center;
+        max-width: 1000px;
+        overflow: hidden;}
+
+        .films_category
+        {max-width: 880px;
+        overflow: hidden;}
+
+        .film_in_category
+        {min-width: 200px;
+        height: 200px;
+        border: 1px black solid;}
+
+        .first_film_in_category
+        {margin-right: 9px;}
+
+        .middle_film_in_category
+        {margin: 0 9px;}
+
+        .last_film_in_category
+        {margin-left: 9px;}
+
+/* */
 
 
 /* À ranger */
 .synopsis
 {font-size: 1.1em;
 text-indent: 40px;}
-
-
-
 
 
 
@@ -86,7 +133,7 @@ a:visited
 {color: #64b164;}
 
 
-/*  */
+/* temporaire */
 
 .temporaire_green
 {border: 1px green solid;}
@@ -96,3 +143,15 @@ a:visited
 
 .temporaire_yellow
 {border: 1px yellow solid;}
+
+.temporaire_center_number_film
+{display: flex;
+justify-content: center;
+align-items: center;
+height: 198px;
+color: green;
+font-size: 3em;}
+
+
+
+
