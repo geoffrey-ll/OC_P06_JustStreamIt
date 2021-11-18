@@ -5,7 +5,9 @@
 .idea/
 message_for_commit.txt
 test.py
-.OCMovies-API-EN-FR-master/
+OCMovies-API-EN-FR-master/
+images/
+temporaire.js
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/python

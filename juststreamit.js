@@ -1,5 +1,4 @@
 // Stockage ID des films (s'attuatile à chaque refresh de la page)
-let id_best_film
 
 // Affichage informations films dans fenêtre modale
 
@@ -12,27 +11,57 @@ function stockId() {
 stockId()
 
 
-function displayInfosInModal(name) {
+function displayInfosInModal(name, modal) {
     fetch("http://localhost:8000/api/v1/titles/" + list_id[name])
         .then(res => {
             if (res.ok) {
             res.json().then(data_film => {
-                elt = document.getElementById(name)
-                elt.getElementsByClassName('js_modal_title')[0].innerHTML = data_film.title
-                elt.getElementsByClassName('js_modal_poster')[0].src = data_film.image_url
-                elt.getElementsByClassName('js_modal_date_published')[0].innerHTML = data_film.date_published
-                elt.getElementsByClassName('js_modal_duration')[0].innerHTML = heuresMinutes(data_film.duration)
-                elt.getElementsByClassName('js_modal_genres')[0].innerHTML = data_film.genres
-                elt.getElementsByClassName('js_modal_directors')[0].innerHTML = data_film.directors
-                elt.getElementsByClassName('js_modal_actors')[0].innerHTML = data_film.actors
-                elt.getElementsByClassName('js_modal_original_title')[0].innerHTML = data_film.original_title
-                elt.getElementsByClassName('js_modal_countries')[0].innerHTML = data_film.countries
-                elt.getElementsByClassName('js_modal_imdb_score')[0].innerHTML = data_film.imdb_score
-                elt.getElementsByClassName('js_modal_rated')[0].innerHTML = shortRatedNGross(data_film.rated)
-                elt.getElementsByClassName('js_modal_worldwide_gross_income')[0].innerHTML = shortRatedNGross(data_film.worldwide_gross_income)
-                elt.getElementsByClassName('js_modal_synopsis')[0].innerHTML = data_film.long_description
-            })
-            }
+
+                console.log('In dispaly modal')
+
+                idSelectors =
+                    {'innerHTML' : ['title', 'date_published', 'duration',
+                                'genres', 'directors', 'actors',
+                                'original_title', 'countries', 'imdb_score',
+                                'rated', 'worldwide_gross_income',
+                                'long_description'],
+                    'src' : 'poster'
+                    }
+
+
+//                for (key in idSelectors) {
+//                    console.log(key)
+//                    if (key === 'innerHTML') {
+//                        for (value of idSelectors[key]) {
+//                            console.log('#js_modal_' + value)
+//                            console.log(key)
+////                            console.log(modal.querySelector('#js_modal_' + value).key)
+//                            modal.querySelector('#js_modal_' + value).key = data_film.value
+//                        }
+//                    } else {
+//                        modal.querySelector('#js_modal' + idSelector[key]).key() = data_film.value
+//                    }
+//                }
+
+                console.log(modal.querySelector('#js_modal_title').innerHTML = data_film.title)
+                modal.querySelector('#js_modal_poster').src = data_film.image_url
+                modal.querySelector('#js_modal_date_published').innerHTML = data_film.date_published
+                modal.querySelector('#js_modal_duration').innerHTML = heuresMinutes(data_film.duration)
+                modal.querySelector('#js_modal_genres').innerHTML = data_film.genres
+                modal.querySelector('#js_modal_directors').innerHTML = data_film.directors
+                modal.querySelector('#js_modal_actors').innerHTML = data_film.actors
+                modal.querySelector('#js_modal_original_title').innerHTML = data_film.original_title
+                modal.querySelector('#js_modal_countries').innerHTML = data_film.countries
+                modal.querySelector('#js_modal_imdb_score').innerHTML = data_film.imdb_score
+                modal.querySelector('#js_modal_rated').innerHTML = shortRatedNGross(data_film.rated)
+                modal.querySelector('#js_modal_worldwide_gross_income').innerHTML = shortRatedNGross(data_film.worldwide_gross_income)
+                modal.querySelector('#js_modal_long_description').innerHTML = data_film.long_description
+
+                console.log(modal)
+
+                document.getElementById(name).innerHTML = modal
+
+            })}
         })
 }
 
@@ -80,10 +109,10 @@ function get_id_best_films() {
                     ]
 
                     list_id['modal_0x1'] = id_second_best
+                    list_id['modal_0x2'] = id_third_best
                     console.log(list_id)
-                    console.log(list_id['modal_0x1'])
 
-                    get_poster_film(category, id_best_film_2to5)
+//                    get_poster_film(category, id_best_film_2to5)
 
                     page2 = data_sorted_films.next
 
@@ -108,25 +137,25 @@ function get_data_best_film() {
 }
 
 
-async function get_poster_film() {
-    for (id of id_best_film_2to5) {
-        console.log("c'est quoi l'id : " + id)
-        poster_film = document.getElementById(category + "x" + id_best_film_2to5.indexOf(id))
-        path = "http://localhost:8000/api/v1/titles/" + id
-
-       await fetch(path)
-
-            .then(res => {
-                console.log(res)
-                if (res.ok) {
-                    res.json().then(data_film => {
-                        poster_film.src = data_film.image_url
-                    })
-                } else {
-                    console.log("ERROR")}
-            })
-}
-}
+//async function get_poster_film() {
+//    for (id of id_best_film_2to5) {
+//        console.log("c'est quoi l'id : " + id)
+//        poster_film = document.getElementById(category + "x" + id_best_film_2to5.indexOf(id))
+//        path = "http://localhost:8000/api/v1/titles/" + id
+//
+//       await fetch(path)
+//
+//            .then(res => {
+//                console.log(res)
+//                if (res.ok) {
+//                    res.json().then(data_film => {
+//                        poster_film.src = data_film.image_url
+//                    })
+//                } else {
+//                    console.log("ERROR")}
+//            })
+//}
+//}
 
 
 
@@ -136,21 +165,54 @@ async function get_poster_film() {
 let modal = null
 let previouslyFocusElement = null
 
-function openModal(e) {
+//async function loadModal() {
+//    e.preventDefault()
+//    const cible = e.target.getAttribute('name')
+//    const id_film_key = e.target.getAttribute('id')
+//
+//    const html = await fetch(cible).then(response => response.text())
+//    const modal = document.createRange().createContextualFragment(html).querySelector('#modal_pattern')
+//
+//
+//}
 
-    console.log("je suis e")
+async function loadModal (name) {
+    e.preventDefault()
+    const cible = "modal_window.html#modal_pattern"
+    const id_film_key = e.target.getAttribute('name')
+
+    const html = await fetch(cible).then(response => response.text())
+    const modal = document.createRange().createContextualFragment(html).querySelector('#modal_pattern')
+    displayInfosInModal(id_film_key, modal)
+}
+
+async function openModal(e) {
+    e.preventDefault()
+    const cible = "modal_window.html#modal_pattern"
+    const id_film_key = e.target.getAttribute('name')
+
+    const html = await fetch(cible).then(response => response.text())
+    const modal = document.createRange().createContextualFragment(html).querySelector('#modal_pattern')
+    displayInfosInModal(id_film_key, modal)
+
+//    modal = await loadModal(cible)
+//    modal = await loadModal(aba)
+
+
+//    modal = document.getElementById(e.target.getAttribute('name'))
+
+    previouslyFocusElement = document.querySelector(':focus')
+
     console.log(e)
 
-    e.preventDefault()
-    modal = document.getElementById(e.target.getAttribute('name'))
-    displayInfosInModal(e.target.getAttribute('name'))
-    previouslyFocusElement = document.querySelector(':focus')
-    modal.removeAttribute('aria-hidden')
-    modal.style.display = null
+    principal = document.getElementById(e.target.getAttribute('name'))
+
+    principal.removeAttribute('aria-hidden')
+    principal.style.display = null
     modal.querySelector('.js_modal_close').focus()
-    modal.setAttribute('aria-modal', 'true')
-    modal.addEventListener('click', closeModal)
-    modal.removeEventListener('click', openModal)
+    principal.setAttribute('aria-modal', 'true')
+    principal.addEventListener('click', closeModal)
+    principal.removeEventListener('click', openModal)
     modal.querySelector('.js_modal_close').addEventListener('click', closeModal)
     modal.querySelector('.js_modal_stop').addEventListener('click', stopPropagation)
 }
