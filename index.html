@@ -3,229 +3,355 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="juststreamit.css" />
+
     <title>Just Stream It - Accueil</title>
 </head>
 <body class="flex_box_column center">
-    <header class="flex_box_row width_1000 margin" id="header_site">
+    <header class="flex_box_row width_1000" id="header_site">
         <div>
-            <a class="temporaire_green" href="index.html"><img class="logo_site temporaire_red" src="images/logo_juststreamit.png" alt="Logo JustStreamIt" /></a>
+            <a href="index.html"><img class="logo_site" src="images/logo_juststreamit.png" alt="Logo JustStreamIt" /></a>
         </div>
 
-        <nav class="flex_box_row">
-            <a href="index.html"><h1 class="option_nav_site">Accueil</h1></a>
-            <!-- Indiquer le lien du href ci-dessous -->
-            <a href="#.html"><h1 class="option_nav_site">Catégories</h1></a>
+        <nav>
+            <ul class="flex_box_row menu_nav_site">
+                <li><a href="index.html" class="option_nav_site">Accueil</a></li>
+                <!-- Indiquer le lien du href ci-dessous -->
+                <li><a href="#.html" class="option_nav_site">Catégories</a></li>
+            </ul>
         </nav>
     </header>
 
-    <section class="flex_box_column width_1000 margin_category">
-        <header class="flex_box_row" id="best_film">
-            <div class="" id="infos_best_film">
-                <h1 id="title_best_film">Kaamelott - Premier volet</h1>
-                <!-- Lien à ajouter ci-dessous -->
-                <div class="flex_box_column center" id="">
-                    <a class="win_more_infos" id="button_best_film" href="#">Plus d'informations</a>
-                </div>
-                <p class="synopsis">Le tyrannique Lancelot-du-Lac et ses mercenaires saxons font règner la terreur sur le royaume de Logres. Les Dieux, insultés par cette cruelle dictature, provoquent le retour d'Arthur Pendragon et l'avènement de la résistance. Arthur parviendra-t-il à fédérer les clans rebelles, renverser son rival, reprendre Kaamelott et restaurer la paix sur l'île de Bretagne ?</p>
+    <section class="flex_box_row width_1000 margin_category" id="best_film">
+        <div class="" id="infos_best_film">
+            <h1 id="title_best_film"></h1>
+            <!-- Lien à ajouter ci-dessous -->
+            <div class="flex_box_column center" id="">
+                <button name="modal_best_film" class="js_modal button_generic">Plus d'informations</button>
+                <aside id="modal_best_film" class="modal flex_box_column center" style="display:none;" aria-hidden="true">
+                    <div class="modal_wrapper js_modal_stop">
+                        <div class="modal_head flex_box_row">
+                            <button class="js_modal_close button_generic">X</button>
+                            <h1 class="js_modal_title"></h1>
+                        </div>
+                        <div class="flex_box_row">
+                            <aside>
+                                <img class="js_modal_poster" src="" alt="Affiche du film" />
+                            </aside>
+                            <div class="modal_infos flex_box_column">
+                                <div class="flex_box_row">
+                                    <div>
+                                        Sorti en salle le :
+                                        <span class="js_modal_date_published"></span>
+                                    </div>
+                                    <div class="alinea_duration">
+                                        Durrée :
+                                        <span class="js_modal_duration"></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    Genres :
+                                    <span class="js_modal_genres"></span>
+                                </div>
+                                <div>
+                                    Réalisateurs :
+                                    <span class="js_modal_directors"></span>
+                                </div>
+                                <div>
+                                    Acteurs :
+                                    <span class="js_modal_actors"></span>
+                                </div>
+                                <div>
+                                    Titre original :
+                                    <span class="js_modal_original_title"></span>
+                                </div>
+                                <div>
+                                    Pays :
+                                    <span class="js_modal_countries"></span>
+                                </div>
+                                <div class="flex_box_row">
+                                    <div>
+                                        Score IMDB : 
+                                        <span class="js_modal_imdb_score"></span>
+                                    </div>
+                                    <div class="alinea_duration">
+                                        Classement :
+                                        <span class="js_modal_rated"></span>
+                                    </div>
+                                    <div class="alinea_duration">
+                                        Box-office mondial :
+                                        <span class="js_modal_worldwide_gross_income"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box_modal_synopsis">
+                            <div class="key_synopsis">
+                                 Synopsis :
+                            </div>
+                            <span class="js_modal_synopsis"></span>
+                        </div>
+                    </div>
+                </aside>
             </div>
-            <img id="poster_best_film" src="images/poster_film_kaamelott.jpg" alt="Affiche du meilleur film" />
-        </header>
-
-        <section class="flex_box_column">
-            <h1 class="title_category">Films les mieux notés</h1>
-            <div class="flex_box_row nav_n_films_category">
-                <nav class="nav_films_left">
-                    <a class="flex_box_row" href="#0x1">
-                        <div class="nav_art_generality arrow_left"></div>
-                        <div class="nav_art_generality pave"></div>
-                        <div class="nav_art_generality pave"></div>
-                    </a>
-                </nav>
-
-                <div class="flex_box_row films_category">
-                    <a class="win_more_infos film_in_category first_film_in_category" href="#" id="0x1">
-                        <div class="temporaire_center_number_film">0x1</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="0x2">
-                        <div class="temporaire_center_number_film">0x2</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="0x3">
-                        <div class="temporaire_center_number_film">0x3</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="0x4">
-                        <div class="temporaire_center_number_film">0x4</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="0x5">
-                        <div class="temporaire_center_number_film">0x5</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="0x6">
-                        <div class="temporaire_center_number_film">0x6</div>
-                    </a>
-                    <a class="win_more_infos film_in_category last_film_in_category" href="#" id="0x7">
-                        <div class="temporaire_center_number_film">0x7</div>
-                    </a>
-                </div>
-
-                <nav class="nav_films_right">
-                    <a class="flex_box_row" href="#0x7">
-                        <div class="nav_art_generality pave"></div>
-                        <div class="nav_art_generality pave"></div>
-                        <div class="nav_art_generality arrow_right"></div>
-                    </a>
-                </nav>
-            </div>
-        </section>
-
-        <section class="flex_box_column">
-            <h1 class="title_category">Films catégories 1</h1>
-            <div class="flex_box_row nav_n_films_category">
-                <nav class="nav_films_left">
-                    <a class="flex_box_row" href="#1x1">
-                        <div class="nav_art_generality arrow_left"></div>
-                        <div class="nav_art_generality pave"></div>
-                        <div class="nav_art_generality pave"></div>
-                    </a>
-                </nav>
-
-                <div class="flex_box_row films_category">
-                    <a class="win_more_infos film_in_category first_film_in_category" href="#" id="1x1">
-                        <div class="temporaire_center_number_film">1x1</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="1x2">
-                        <div class="temporaire_center_number_film">1x2</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="1x3">
-                        <div class="temporaire_center_number_film">1x3</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="1x4">
-                        <div class="temporaire_center_number_film">1x4</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="1x5">
-                        <div class="temporaire_center_number_film">1x5</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="1x6">
-                        <div class="temporaire_center_number_film">1x6</div>
-                    </a>
-                    <a class="win_more_infos film_in_category last_film_in_category" href="#" id="1x7">
-                        <div class="temporaire_center_number_film">1x7</div>
-                    </a>
-                </div>
-
-                <nav class="nav_films_right">
-                    <a class="flex_box_row" href="#1x7">
-                        <div class="nav_art_generality pave"></div>
-                        <div class="nav_art_generality pave"></div>
-                        <div class="nav_art_generality arrow_right"></div>
-                    </a>
-                </nav>
-            </div>
-        </section>
-
-        <section class="flex_box_column">
-            <h1 class="title_category">Films catégorie 2</h1>
-            <div class="flex_box_row nav_n_films_category">
-                <nav class="nav_films_left">
-                    <a class="flex_box_row" href="#2x1">
-                        <div class="nav_art_generality arrow_left"></div>
-                        <div class="nav_art_generality pave"></div>
-                        <div class="nav_art_generality pave"></div>
-                    </a>
-                </nav>
-
-                <div class="flex_box_row films_category">
-                    <a class="win_more_infos film_in_category first_film_in_category" href="#" id="2x1">
-                        <div class="temporaire_center_number_film">2x1</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="2x2">
-                        <div class="temporaire_center_number_film">2x2</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="2x3">
-                        <div class="temporaire_center_number_film">2x3</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="2x4">
-                        <div class="temporaire_center_number_film">2x4</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="2x5">
-                        <div class="temporaire_center_number_film">2x5</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="2x6">
-                        <div class="temporaire_center_number_film">2x6</div>
-                    </a>
-                    <a class="win_more_infos film_in_category last_film_in_category" href="#" id="2x7">
-                        <div class="temporaire_center_number_film">2x7</div>
-                    </a>
-                </div>
-
-                <nav class="nav_films_right">
-                    <a class="flex_box_row" href="#2x7">
-                        <div class="nav_art_generality pave"></div>
-                        <div class="nav_art_generality pave"></div>
-                        <div class="nav_art_generality arrow_right"></div>
-                    </a>
-                </nav>
-            </div>
-        </section>
-
-        <section class="flex_box_column">
-            <h1 class="title_category">Films catégorie 3</h1>
-            <div class="flex_box_row nav_n_films_category">
-                <nav class="nav_films_left">
-                    <a class="flex_box_row" href="#3x1">
-                        <div class="nav_art_generality arrow_left"></div>
-                        <div class="nav_art_generality pave"></div>
-                        <div class="nav_art_generality pave"></div>
-                    </a>
-                </nav>
-
-                <div class="flex_box_row films_category">
-                    <a class="win_more_infos film_in_category first_film_in_category" href="#" id="3x1">
-                        <div class="temporaire_center_number_film">3x1</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="3x2">
-                        <div class="temporaire_center_number_film">3x2</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="3x3">
-                        <div class="temporaire_center_number_film">3x3</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="3x4">
-                        <div class="temporaire_center_number_film">3x4</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="3x5">
-                        <div class="temporaire_center_number_film">3x5</div>
-                    </a>
-                    <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="3x6">
-                        <div class="temporaire_center_number_film">3x6</div>
-                    </a>
-                    <a class="win_more_infos film_in_category last_film_in_category" href="#" id="3x7">
-                        <div class="temporaire_center_number_film">3x7</div>
-                    </a>
-                </div>
-
-                <nav class="nav_films_right">
-                    <a class="flex_box_row" href="#3x7">
-                        <div class="nav_art_generality pave"></div>
-                        <div class="nav_art_generality pave"></div>
-                        <div class="nav_art_generality arrow_right"></div>
-                    </a>
-                </nav>
-            </div>
-        </section>
-
+            <p id="synopsis_best_film"></p>
+        </div>
+        <aside>
+            <img id="poster_best_film" src="" alt="Affiche du meilleur film" />
+        </aside>
     </section>
 
+    <section class="flex_box_column width_1000">
+        <h1 class="title_category">Films les mieux notés</h1>
+        <div class="flex_box_row nav_n_films_category">
+            <nav class="nav_films_left">
+                <a class="flex_box_row" href="#0x1">
+                    <div class="nav_art_generality arrow_left"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                </a>
+            </nav>
+
+            <div class="flex_box_row films_category">
+                <a href="#" class="temporaire_green js_modal" name="modal_0x1"> 
+                    <img class="win_more_infos film_in_category first_film_in_category" src="" alt="t" id="0x1" />
+                </a>
+                    <aside id="modal_0x1" class="modal flex_box_column center" style="display:none;" aria-hidden="true">
+                        <div class="modal_wrapper js_modal_stop">
+                            <div class="modal_head flex_box_row">
+                                <button class="js_modal_close button_generic">X</button>
+                                <h1 class="js_modal_title"></h1>
+                            </div>
+                            <div class="flex_box_row">
+                                <aside>
+                                    <img class="js_modal_poster" src="" alt="Affiche du film" />
+                                </aside>
+                                <div class="modal_infos flex_box_column">
+                                    <div class="flex_box_row">
+                                        <div>
+                                            Sorti en salle le :
+                                            <span class="js_modal_date_published"></span>
+                                        </div>
+                                        <div class="alinea_duration">
+                                            Durrée :
+                                            <span class="js_modal_duration"></span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        Genres :
+                                        <span class="js_modal_genres"></span>
+                                    </div>
+                                    <div>
+                                        Réalisateurs :
+                                        <span class="js_modal_directors"></span>
+                                    </div>
+                                    <div>
+                                        Acteurs :
+                                        <span class="js_modal_actors"></span>
+                                    </div>
+                                    <div>
+                                        Titre original :
+                                        <span class="js_modal_original_title"></span>
+                                    </div>
+                                    <div>
+                                        Pays :
+                                        <span class="js_modal_countries"></span>
+                                    </div>
+                                    <div class="flex_box_row">
+                                        <div>
+                                            Score IMDB : 
+                                            <span class="js_modal_imdb_score"></span>
+                                        </div>
+                                        <div class="alinea_duration">
+                                            Classement :
+                                            <span class="js_modal_rated"></span>
+                                        </div>
+                                        <div class="alinea_duration">
+                                            Box-office mondial :
+                                            <span class="js_modal_worldwide_gross_income"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box_modal_synopsis">
+                                <div class="key_synopsis">
+                                     Synopsis :
+                                </div>
+                                <span class="js_modal_synopsis"></span>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!--<div class="temporaire_center_number_film">0x1</div>-->
+                <a href="#" class="temporaire_green js_modal" name="modal_0x2"> 
+                    <img class="win_more_infos film_in_category middle_film_in_category" src="" alt="t" id="0x2" />
+                </a>
+
+                    <!--<div class="temporaire_center_number_film">0x2</div>-->
+
+                <img class="win_more_infos film_in_category middle_film_in_category" src="" id="0x3" />
+                    <!--<div class="temporaire_center_number_film">0x3</div>-->
+
+                <img class="win_more_infos film_in_category middle_film_in_category" src="" id="0x4" />
+                    <!--<div class="temporaire_center_number_film">0x4</div>-->
+
+                <img class="win_more_infos film_in_category middle_film_in_category" src="" id="0x5" />
+                    <!--<div class="temporaire_center_number_film">0x5</div>-->
+
+                <img class="win_more_infos film_in_category middle_film_in_category" src="" id="0x6" />
+                    <!--<div class="temporaire_center_number_film">0x6</div>-->
+
+                <img class="win_more_infos film_in_category last_film_in_category" src="" id="0x7" />
+                    <!--<div class="temporaire_center_number_film">0x7</div>-->
+
+            </div>
+
+            <nav class="nav_films_right">
+                <a class="flex_box_row" href="#0x6">
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality arrow_right"></div>
+                </a>
+            </nav>
+        </div>
+    </section>
+
+    <section class="flex_box_column width_1000">
+        <h1 class="title_category">Films catégorie 1</h1>
+        <div class="flex_box_row nav_n_films_category">
+            <nav class="nav_films_left">
+                <a class="flex_box_row" href="#1x1">
+                    <div class="nav_art_generality arrow_left"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                </a>
+            </nav>
+
+            <div class="flex_box_row films_category">
+                <img class="win_more_infos film_in_category first_film_in_category" src="" id="1x1" />
+                    <!--<div class="temporaire_center_number_film">1x1</div>-->
+
+                <img class="win_more_infos film_in_category middle_film_in_category" src="" id="1x2" />
+                    <!--<div class="temporaire_center_number_film">1x2</div>-->
+
+                <img class="win_more_infos film_in_category middle_film_in_category" src="" id="1x3" />
+                    <!--<div class="temporaire_center_number_film">1x3</div>-->
+
+                <img class="win_more_infos film_in_category middle_film_in_category" src="" id="1x4" />
+                    <!--<div class="temporaire_center_number_film">1x4</div>-->
+
+                <img class="win_more_infos film_in_category middle_film_in_category" src="" id="1x5" />
+                    <!--<div class="temporaire_center_number_film">1x5</div>-->
+
+                <img class="win_more_infos film_in_category middle_film_in_category" src="" id="1x6" />
+                    <!--<div class="temporaire_center_number_film">1x6</div>-->
+
+                <img class="win_more_infos film_in_category last_film_in_category" src="" id="1x7" />
+                    <!--<div class="temporaire_center_number_film">1x7</div>-->
+
+            </div>
+
+            <nav class="nav_films_right">
+                <a class="flex_box_row" href="#1x7">
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality arrow_right"></div>
+                </a>
+            </nav>
+        </div>
+    </section>
+
+    <section class="flex_box_column width_1000">
+        <h1 class="title_category">Films catégorie 2</h1>
+        <div class="flex_box_row nav_n_films_category">
+            <nav class="nav_films_left">
+                <a class="flex_box_row" href="#2x1">
+                    <div class="nav_art_generality arrow_left"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                </a>
+            </nav>
+
+            <div class="flex_box_row films_category">
+                <a class="win_more_infos film_in_category first_film_in_category" href="#" id="2x1">
+                    <div class="temporaire_center_number_film">2x1</div>
+                </a>
+                <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="2x2">
+                    <div class="temporaire_center_number_film">2x2</div>
+                </a>
+                <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="2x3">
+                    <div class="temporaire_center_number_film">2x3</div>
+                </a>
+                <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="2x4">
+                    <div class="temporaire_center_number_film">2x4</div>
+                </a>
+                <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="2x5">
+                    <div class="temporaire_center_number_film">2x5</div>
+                </a>
+                <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="2x6">
+                    <div class="temporaire_center_number_film">2x6</div>
+                </a>
+                <a class="win_more_infos film_in_category last_film_in_category" href="#" id="2x7">
+                    <div class="temporaire_center_number_film">2x7</div>
+                </a>
+            </div>
+
+            <nav class="nav_films_right">
+                <a class="flex_box_row" href="#2x7">
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality arrow_right"></div>
+                </a>
+            </nav>
+        </div>
+    </section>
+
+    <section class="flex_box_column width_1000">
+        <h1 class="title_category">Films catégorie 3</h1>
+        <div class="flex_box_row nav_n_films_category">
+            <nav class="nav_films_left">
+                <a class="flex_box_row" href="#3x1">
+                    <div class="nav_art_generality arrow_left"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                </a>
+            </nav>
+
+            <div class="flex_box_row films_category">
+                <a class="win_more_infos film_in_category first_film_in_category" href="#" id="3x1">
+                    <div class="temporaire_center_number_film">3x1</div>
+                </a>
+                <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="3x2">
+                    <div class="temporaire_center_number_film">3x2</div>
+                </a>
+                <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="3x3">
+                    <div class="temporaire_center_number_film">3x3</div>
+                </a>
+                <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="3x4">
+                    <div class="temporaire_center_number_film">3x4</div>
+                </a>
+                <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="3x5">
+                    <div class="temporaire_center_number_film">3x5</div>
+                </a>
+                <a class="win_more_infos film_in_category middle_film_in_category" href="#" id="3x6">
+                    <div class="temporaire_center_number_film">3x6</div>
+                </a>
+                <a class="win_more_infos film_in_category last_film_in_category" href="#" id="3x7">
+                    <div class="temporaire_center_number_film">3x7</div>
+                </a>
+            </div>
+
+            <nav class="nav_films_right">
+                <a class="flex_box_row" href="#3x7">
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality arrow_right"></div>
+                </a>
+            </nav>
 
 
+        </div>
+    </section>
 
-
-
-    <div class="arrow_generality arrow_left"></div>
-    <div class="arrow_generality arrow_right"></div>
-    <div class="pave"></div>
-
-
-
-
-
-
+    <script type="text/javascript" src="juststreamit.js"></script>
 </body>
 </html>
