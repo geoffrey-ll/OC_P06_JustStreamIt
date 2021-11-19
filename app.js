@@ -17,8 +17,6 @@ async function displayInfosInModal(name, modal_pattern) {
             if (res.ok) {
             res.json().then(data_film => {
 
-                console.log('In dispaly modal')
-
                 modal_pattern.querySelector('#js_modal_title').innerHTML = data_film.title
                 modal_pattern.querySelector('#js_modal_poster').src = data_film.image_url
                 modal_pattern.querySelector('#js_modal_date_published').innerHTML = data_film.date_published
@@ -32,11 +30,6 @@ async function displayInfosInModal(name, modal_pattern) {
                 modal_pattern.querySelector('#js_modal_rated').innerHTML = shortRatedNGross(data_film.rated)
                 modal_pattern.querySelector('#js_modal_worldwide_gross_income').innerHTML = shortRatedNGross(data_film.worldwide_gross_income)
                 modal_pattern.querySelector('#js_modal_long_description').innerHTML = data_film.long_description
-
-
-
-//                document.getElementById(name).innerHTML = modal
-
             })}
         })
         return modal_pattern
@@ -120,43 +113,44 @@ function get_data_best_film() {
 let modal = null
 let previouslyFocusElement = null
 
-
 async function loadModal (e) {
     e.preventDefault()
     cible = "modal_window.html#modal_pattern"
-    id_film_key = e.target.getAttribute('name')
+    const existingModal = document.querySelector('#modal_pattern')
+    if (existingModal !== null) {
+        return openModal(existingModal)
+    } else {
+        id_film_key = e.target.getAttribute('name')
 
-    html = await fetch(cible).then(response => response.text())
-    modal_pattern = document.createRange().createContextualFragment(html).querySelector('#modal_pattern')
+        html = await fetch(cible).then(response => response.text())
+        modal_pattern = document.createRange().createContextualFragment(html).querySelector('#modal_pattern')
 
+        document.body.append(modal_pattern)
+        modal = await displayInfosInModal(id_film_key, modal_pattern)
 
-    document.body.append(modal_pattern)
-    modal_princ = await displayInfosInModal(id_film_key, modal_pattern)
-
-    openModal(modal_princ).then(result => console.log('fulilled')).catch(error => console.log('blalba'))
-
-
-
-//    return setTimeout(openModal(modal_princ), 5000)
+        openModal(modal).then(result => console.log('fulilled')).catch(error => console.log('blalba'))
+    }
 }
 
-async function openModal(modal_princ) {
-    console.log(modal_princ)
-
+async function openModal(modal) {
     previouslyFocusElement = document.querySelector(':focus')
-
-    modal_princ.style.display = null
-    modal_princ.Selector('.js_modal_close').focus()
-    modal_princ.addEventListener('click', closeModal)
-    modal_princ.removeEventListener('click', loadModal)
-    modal_princ.querySelector('.js_modal_close').addEventListener('click', closeModal)
-    modal_princ.querySelector('.js_modal_stop').addEventListener('click', stopPropagation)
+    modal.removeAttribute('aria-hidden')
+    modal.style.display = null
+    modal.querySelector('.js_modal_close').focus()
+    modal.setAttribute('aria-modal', 'true')
+    modal.addEventListener('click', closeModal)
+    modal.removeEventListener('click', loadModal)
+    modal.querySelector('.js_modal_close').addEventListener('click', closeModal)
+    modal.querySelector('.js_modal_stop').addEventListener('click', stopPropagation)
 }
 
 function closeModal(e) {
     if (modal === null) return "rien à ouvrir"
     if (previouslyFocusElement !== null) previouslyFocusElement.focus()
     e.preventDefault()
+
+    modal.setAttribute('aria-hidden', 'true')
+    modal.removeAttribute('aria-modal')
     modal.removeEventListener('click', closeModal)
     modal.querySelector('.js_modal_close').removeEventListener('click', closeModal)
     modal.querySelector('.js_modal_stop').removeEventListener('click', stopPropagation)
@@ -165,7 +159,7 @@ function closeModal(e) {
         modal.removeEventListener('animationend', hideModal)
         modal = null
     }
-    modal.addEventListener('animationend', hideModal())
+    modal.addEventListener('animationend', hideModal)
 }
 
 function stopPropagation(e) {
@@ -175,6 +169,8 @@ function stopPropagation(e) {
 function focusInModal(e) {
     e.preventDefault()
 }
+
+
 
 document.querySelectorAll('.js_modal').forEach(
     modal_to_open => {modal_to_open.addEventListener('click', loadModal)}
@@ -193,28 +189,4 @@ window.addEventListener('keydown', function(e) {
 
 
 // temporaire
-
-//
-//fetch("http://localhost:8000/api/v1/titles/32138")
-//    .then(res => res.json())
-//    .then(data => console.log(data))
-//
-//fetch("http://localhost:8000/api/v1/titles/33467")
-//    .then(res => res.json())
-//    .then(data => console.log(data))
-
-function test_print(){
-    fetch("http://localhost:8000/api/v1/titles/499549")
-        .then(function(res) {
-            if (res.ok) {
-                return res.json();
-            }
-        })
-        .then(function(value) {
-            console.log(value);
-        })
-        .catch(function(err) {
-        });
-    return res.blob();
-}
 
