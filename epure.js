@@ -33,15 +33,13 @@ async function displayInfosInModal(name, modal_pattern) {
                 modal_pattern.querySelector('#js_modal_worldwide_gross_income').innerHTML = shortRatedNGross(data_film.worldwide_gross_income)
                 modal_pattern.querySelector('#js_modal_long_description').innerHTML = data_film.long_description
 
-                console.log(modal_pattern)
 
 
 //                document.getElementById(name).innerHTML = modal
 
             })}
         })
-    modal_princ = document.body.append(modal_pattern)
-    return modal_princ
+        return modal_pattern
 }
 
 function heuresMinutes(duration) {
@@ -116,69 +114,39 @@ function get_data_best_film() {
 }
 
 
-//async function get_poster_film() {
-//    for (id of id_best_film_2to5) {
-//        console.log("c'est quoi l'id : " + id)
-//        poster_film = document.getElementById(category + "x" + id_best_film_2to5.indexOf(id))
-//        path = "http://localhost:8000/api/v1/titles/" + id
-//
-//       await fetch(path)
-//
-//            .then(res => {
-//                console.log(res)
-//                if (res.ok) {
-//                    res.json().then(data_film => {
-//                        poster_film.src = data_film.image_url
-//                    })
-//                } else {
-//                    console.log("ERROR")}
-//            })
-//}
-//}
-
-
-
 
 
 // Gestion fenêtre modal
 let modal = null
 let previouslyFocusElement = null
 
-//async function loadModal() {
-//    e.preventDefault()
-//    const cible = e.target.getAttribute('name')
-//    const id_film_key = e.target.getAttribute('id')
-//
-//    const html = await fetch(cible).then(response => response.text())
-//    const modal = document.createRange().createContextualFragment(html).querySelector('#modal_pattern')
-//
-//
-//}
 
-async function loadModal (id_film_key) {
-    const cible = "modal_window.html#modal_pattern"
-//    const id_film_key = e.target.getAttribute('name')
+async function loadModal (e) {
+    e.preventDefault()
+    cible = "modal_window.html#modal_pattern"
+    id_film_key = e.target.getAttribute('name')
 
-    const html = await fetch(cible).then(response => response.text()).catch(error => console.log('ok'))
-    const modal_pattern = document.createRange().createContextualFragment(html).querySelector('#modal_pattern')
+    html = await fetch(cible).then(response => response.text())
+    modal_pattern = document.createRange().createContextualFragment(html).querySelector('#modal_pattern')
 
+
+    document.body.append(modal_pattern)
     modal_princ = await displayInfosInModal(id_film_key, modal_pattern)
-    return modal_princ
+
+    openModal(modal_princ).then(result => console.log('fulilled')).catch(error => console.log('blalba'))
+
+
 
 //    return setTimeout(openModal(modal_princ), 5000)
 }
 
-async function openModal(e) {
-    e.preventDefault()
-    const id_film_key = e.target.getAttribute('name')
-    modal_princ = await loadModal(id_film_key)
+async function openModal(modal_princ) {
+    console.log(modal_princ)
 
     previouslyFocusElement = document.querySelector(':focus')
 
-//    modal_princ.removeAttribute('aria-hidden')
     modal_princ.style.display = null
     modal_princ.Selector('.js_modal_close').focus()
-//    modal_princ.setAttribute('aria-modal', 'true')
     modal_princ.addEventListener('click', closeModal)
     modal_princ.removeEventListener('click', loadModal)
     modal_princ.querySelector('.js_modal_close').addEventListener('click', closeModal)
@@ -189,8 +157,6 @@ function closeModal(e) {
     if (modal === null) return "rien à ouvrir"
     if (previouslyFocusElement !== null) previouslyFocusElement.focus()
     e.preventDefault()
-    modal.setAttribute('aria-hidden', 'true')
-    modal.removeAttribute('aria-modal')
     modal.removeEventListener('click', closeModal)
     modal.querySelector('.js_modal_close').removeEventListener('click', closeModal)
     modal.querySelector('.js_modal_stop').removeEventListener('click', stopPropagation)
@@ -211,7 +177,7 @@ function focusInModal(e) {
 }
 
 document.querySelectorAll('.js_modal').forEach(
-    modal_to_open => {modal_to_open.addEventListener('click', openModal)}
+    modal_to_open => {modal_to_open.addEventListener('click', loadModal)}
 )
 
 window.addEventListener('keydown', function(e) {
