@@ -213,9 +213,10 @@ border-radius: 20px / 30px;}
         overflow: hidden;}
 
         .film_in_category
-        {min-width: 200px;
+        {width: 200px;
         height: 200px;
-        border: 1px black solid;}
+        border: 1px black solid;
+        z-index: 0;}
 
         .first_film_in_category
         {margin-right: 9px;}
@@ -257,20 +258,13 @@ a:visited
 .temporaire_violet
 {border: 1px violet solid;}
 
-.temporaire_center_number_film
-{display: flex;
-justify-content: center;
-align-items: center;
-height: 198px;
-color: green;
-font-size: 3em;}
 
 
 *:focus
 {box-shadow: 0 0 4px red;}
 
 .box_film
-{background: url("images/poster_film_44444.jpg");
+{background: red;
 z-index: 0;}
 
 .hidden_button

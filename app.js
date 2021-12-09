@@ -2,14 +2,128 @@
 
 // Affichage informations films dans fenêtre modale
 
-let list_id = {}
+//let list_id = {}
 
-function stockId() {
-    list_id['0x0'] = 'test'
+//get_id_category1()
+//get_id_category2()
+//get_id_category3()
+
+
+
+
+// Collecte des id des films
+
+
+
+async function get_id_best_films_all_genres(list_id) {
+    url_search_best = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score%2C-votes"
+    pages = [url_search_best, url_search_best.next]
+    count = 1
+
+    for (page of pages) {
+        await fetch(page)
+            .then(res => {
+                if (res.ok) {
+                    res.json().then(data_sorted_films => {
+
+                        if (count === 1) {
+                            list_id['modal_best_film'] = data_sorted_films.results[0].id
+
+                            list_id['modal_0x1'] = data_sorted_films.results[1].id
+                            list_id['modal_0x2'] = data_sorted_films.results[2].id
+                            list_id['modal_0x3'] = data_sorted_films.results[3].id
+                            list_id['modal_0x4'] = data_sorted_films.results[4].id
+                            count += 1
+                        }
+                        if (count === 2) {
+                            list_id['modal_0x5'] = data_sorted_films.results[0].id
+                            list_id['modal_0x6'] = data_sorted_films.results[1].id
+                            list_id['modal_0x7'] = data_sorted_films.results[2].id
+                        }
+                    })
+                }
+            })
+    }
+    return list_id
 }
 
-stockId()
+async function get_id_category(list_id) {
+    genres = ["biography", "sci-fi", "adventure"]
 
+    for (genre of genres) {
+        url_start = "http://localhost:8000/api/v1/titles/?genre=" + genre
+        url_end = "&sort_by=-imdb_score%2C-votes"
+
+        pages = [url_start + url_end, url_start + "&page=2" + url_end]
+
+//        console.log("Les deux pages sont : " + pages + " FIN")
+
+        for (page of pages) {
+
+            console.log(page)
+
+            if (genre === "biography") {
+                count_genre = 1
+            }
+            if (genre === "sci-fi") {
+                count_genre = 2
+            }
+            if (genre === "adventure") {
+                count_genre = 3
+            }
+            count_page = pages.indexOf(page)
+
+//            console.log(count_page)
+
+            await fetch(page)
+                .then(res => {
+                    if (res.ok) {
+                        res.json().then(data_sorted_films => {
+                            console.log("genre : " + genre + " url : " + page + " count_page : " + count_page)
+                            if (count_page === 0) {
+                                list_id['modal_' + count_genre + 'x1']
+                                        = data_sorted_films.results[0].id
+                                list_id['modal_' + count_genre + 'x2']
+                                        = data_sorted_films.results[1].id
+                                list_id['modal_' + count_genre + 'x3']
+                                        = data_sorted_films.results[2].id
+                                list_id['modal_' + count_genre + 'x4']
+                                        = data_sorted_films.results[3].id
+                                list_id['modal_' + count_genre + 'x5']
+                                        = data_sorted_films.results[4].id
+                            }
+                            if (count_page === 1) {
+                                list_id['modal_' + count_genre + 'x6']
+                                        = data_sorted_films.results[0].id
+                                list_id['modal_' + count_genre + 'x7']
+                                        = data_sorted_films.results[1].id
+                            }
+                        })
+                    }
+                })
+        }
+    }
+    return list_id
+}
+
+
+
+
+function get_data_best_film(id) {
+    title_best_film = document.getElementById("title_best_film")
+    synopsis_best_film = document.getElementById("synopsis_best_film")
+    poster_best_film = document.getElementById("poster_best_film")
+    fetch("http://localhost:8000/api/v1/titles/" + list_id[modal_best_film])
+        .then(res => res.json())
+        .then(data_best_film => {
+            title_best_film.innerHTML = data_best_film.original_title
+            synopsis_best_film.innerHTML = data_best_film.long_description
+            poster_best_film.src = data_best_film.image_url
+        })
+}
+
+
+// Remplissage fenêtre modale
 
 async function displayInfosInModal(name, modal_pattern) {
     await fetch("http://localhost:8000/api/v1/titles/" + list_id[name])
@@ -55,60 +169,6 @@ function shortRatedNGross(data) {
 
 
 
-get_id_best_films()
-
-
-function get_id_best_films() {
-    fetch("http://localhost:8000/api/v1/titles/?sort_by=-imdb_score%2C-votes")
-        .then(res => {
-            if (res.ok) {
-                res.json().then(data_sorted_films => {
-
-                    console.log(data_sorted_films.results)
-
-                    id_best_film = data_sorted_films.results[0].id
-                    list_id['modal_best_film'] = id_best_film
-                    get_data_best_film(id_best_film)
-
-                    category = 0
-                    id_best_film_2to5 = [
-                        id_second_best = data_sorted_films.results[1].id,
-                        id_third_best = data_sorted_films.results[2].id,
-                        id_four_best = data_sorted_films.results[3].id,
-                        id_five_best = data_sorted_films.results[4].id
-                    ]
-
-                    list_id['modal_0x1'] = id_second_best
-                    list_id['modal_0x2'] = id_third_best
-                    console.log(list_id)
-
-//                    get_poster_film(category, id_best_film_2to5)
-
-                    page2 = data_sorted_films.next
-
-                })
-            } else {
-                console.log("ERROR")}
-        })
-}
-
-
-function get_data_best_film() {
-    title_best_film = document.getElementById("title_best_film")
-    synopsis_best_film = document.getElementById("synopsis_best_film")
-    poster_best_film = document.getElementById("poster_best_film")
-    fetch("http://localhost:8000/api/v1/titles/" + id_best_film)
-        .then(res => res.json())
-        .then(data_best_film => {
-            title_best_film.innerHTML = data_best_film.original_title
-            synopsis_best_film.innerHTML = data_best_film.long_description
-            poster_best_film.src = data_best_film.image_url
-        })
-}
-
-
-
-
 // Gestion fenêtre modal
 let modal = null
 let previouslyFocusElement = null
@@ -128,7 +188,7 @@ async function loadModal (e) {
         document.body.append(modal_pattern)
         modal = await displayInfosInModal(id_film_key, modal_pattern)
 
-        openModal(modal).then(result => console.log('fulilled')).catch(error => console.log('blalba'))
+        openModal(modal).then(result => console.log('fulilled')).catch(error => console.log('error'))
     }
 }
 
@@ -186,7 +246,17 @@ window.addEventListener('keydown', function(e) {
 })
 
 
+// Gestion du script
 
+async function main () {
+    list_id = {}
+//    await list_id[get_id_best_films_all_genres(list_id)]
+    await list_id[get_id_category(list_id)]
+//    get_data_best_film(list_id[modal_best_film])
+    console.log(list_id)
+
+}
+
+main()
 
 // temporaire
-
