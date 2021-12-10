@@ -17,7 +17,8 @@
 
 async function get_id_best_films_all_genres(list_id) {
     url_search_best = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score%2C-votes"
-    pages = [url_search_best, url_search_best.next]
+    url_best_2 = "http://localhost:8000/api/v1/titles/?page=2&sort_by=-imdb_score%2C-votes"
+    pages = [url_search_best, url_best_2]
     count = 1
 
     for (page of pages) {
@@ -44,7 +45,7 @@ async function get_id_best_films_all_genres(list_id) {
                 }
             })
     }
-    return list_id
+    return list_id[0]
 }
 
 async function get_id_category(list_id) {
@@ -103,7 +104,7 @@ async function get_id_category(list_id) {
                 })
         }
     }
-    return list_id
+    return list_id[0]
 }
 
 
@@ -113,7 +114,7 @@ function get_data_best_film(id) {
     title_best_film = document.getElementById("title_best_film")
     synopsis_best_film = document.getElementById("synopsis_best_film")
     poster_best_film = document.getElementById("poster_best_film")
-    fetch("http://localhost:8000/api/v1/titles/" + list_id[modal_best_film])
+    fetch("http://localhost:8000/api/v1/titles/" + id)
         .then(res => res.json())
         .then(data_best_film => {
             title_best_film.innerHTML = data_best_film.original_title
@@ -248,12 +249,13 @@ window.addEventListener('keydown', function(e) {
 
 // Gestion du script
 
+list_id = {}
 async function main () {
-    list_id = {}
-//    await list_id[get_id_best_films_all_genres(list_id)]
-    await list_id[get_id_category(list_id)]
-//    get_data_best_film(list_id[modal_best_film])
-    console.log(list_id)
+    await get_id_best_films_all_genres(list_id)
+    await get_id_category(list_id)
+    await get_data_best_film(list_id["modal_best_film"])
+    console.log("liste complète : " + list_id)
+    console.log("ici " + list_id.modal_best_film);
 
 }
 
