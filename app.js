@@ -252,9 +252,9 @@ window.addEventListener('keydown', function(e) {
 list_id = {}
 async function main () {
     await get_id_best_films_all_genres(list_id)
-    await get_id_category(list_id)
-    await get_data_best_film(list_id["modal_best_film"])
-    console.log("liste complète : " + list_id)
+    // await get_id_category(list_id)
+    // await get_data_best_film(list_id["modal_best_film"])
+    console.log(list_id)
     console.log("ici " + list_id.modal_best_film);
 
 }
