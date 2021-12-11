@@ -76,7 +76,7 @@ border-radius: 20px / 30px;}
     padding: 20px;
     background-color: #353535;
     border: 2px black solid;
-    animation: slideFromTop .4s; both}
+    animation: slideFromTop .4s both;}
 
     .modal[aria-hidden="true"]
     {animation-name: fadeOut;}
@@ -88,7 +88,7 @@ border-radius: 20px / 30px;}
     {from { opacity: 0; }
     to { opacity: 1; }}
 
-    @keyframes faceOut
+    @keyframes fadeOut
     {from { opacity: 1; }
     to { opacity: 0; }}
 
@@ -100,7 +100,7 @@ border-radius: 20px / 30px;}
     {from { transform: translateY(0px); }
     to { transform: translateY(50px); }}
 
-        /* Relating to data film in modal window */
+        /* Relating to data movie in modal window */
         .modal_head
         {position: relative;
         align-items: center;
@@ -166,25 +166,25 @@ border-radius: 20px / 30px;}
         .pave
         {clip-path: polygon(100% 25%, 0% 25%, 0 75%, 100% 75%);}
 
-        .nav_films_left
+        .nav_movies_left
         {margin-right: 9px;}
 
-        .nav_films_right
+        .nav_movies_right
         {margin-left: 9px;}
 
-        /* Category : Best film */
-        #best_film
+        /* Category : Best movie */
+        #best_movie
         {color: black;
         text-align: justify;}
 
-        #infos_best_film
+        #infos_best_movie
         {margin-right: 30px;}
 
-        #poster_best_film
+        #poster_best_movie
         {height: 400px;
-        max-width: auto;}
+        width: auto;}
 
-        #title_best_film
+        #title_best_movie
         {text-align: center;
         margin-bottom: 60px;
         font-size: 2em;
@@ -203,29 +203,31 @@ border-radius: 20px / 30px;}
         margin: 50px 0;
         text-decoration: underline;}
 
-        .nav_n_films_category
+        .nav_n_movies_category
         {align-items: center;
         max-width: 1000px;
         overflow: hidden;}
 
-        .films_category
+        .movies_category
         {max-width: 880px;
         overflow: hidden;}
 
-        .film_in_category
-        {width: 200px;
+        .movie_container
+        {  
         height: 200px;
+        width: auto;
         border: 1px black solid;
-        z-index: 0;}
+        padding: 0;
+        margin: 0 8px;
+        z-index: 0;
+        background: none;
+        }
 
-        .first_film_in_category
-        {margin-right: 9px;}
+        .movie_poster_container
+        {height: 200px;
+        width: auto;
+        }
 
-        .middle_film_in_category
-        {margin: 0 9px;}
-
-        .last_film_in_category
-        {margin-left: 9px;}
 
 /* */
 
@@ -235,7 +237,7 @@ border-radius: 20px / 30px;}
 {font-size: 1.1em;
 text-indent: 40px;}
 
-img.: 1px black solid;}
+/* img.: 1px black solid;} */
 
 a
 {text-decoration: none;}
@@ -263,7 +265,7 @@ a:visited
 *:focus
 {box-shadow: 0 0 4px red;}
 
-.box_film
+.box_movie
 {background: red;
 z-index: 0;}
 

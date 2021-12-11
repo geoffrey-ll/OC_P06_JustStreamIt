@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/css/juststreamit.css" />
+
+    <title>Just Stream It - Accueil</title>
+</head>
+<body class="flex_box_column center">
+    <header class="flex_box_row width_1000" id="header_site">
+        <div>
+            <a href="index.html"><img class="logo_site" src="static/img/logo_juststreamit.png" alt="Logo JustStreamIt" /></a>
+        </div>
+
+        <nav>
+            <ul class="flex_box_row menu_nav_site">
+                <li><a href="index.html" class="option_nav_site">Accueil</a></li>
+                <!-- Indiquer le lien du href ci-dessous -->
+                <li><a href="#.html" class="option_nav_site">Catégories</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="flex_box_row width_1000 margin_category" id="best_movie">
+        <div class="" id="infos_best_movie">
+            <h1 id="title_best_movie"></h1>
+            <!-- Lien à ajouter ci-dessous -->
+            <div class="flex_box_column center" id="">
+                <button name="modal_best_movie" class="js_modal button_generic">Plus d'informations</button>
+                <aside id="modal_best_movie" class="modal flex_box_column center" style="display:none;" aria-hidden="true">
+                    <div class="modal_wrapper js_modal_stop">
+                        <div class="modal_head flex_box_row">
+                            <button class="js_modal_close button_generic">X</button>
+                            <h1 class="js_modal_title"></h1>
+                        </div>
+                        <div class="flex_box_row">
+                            <aside>
+                                <img class="js_modal_poster" src="" alt="Affiche du movie" />
+                            </aside>
+                            <div class="modal_infos flex_box_column">
+                                <div class="flex_box_row">
+                                    <div>
+                                        Sorti en salle le :
+                                        <span class="js_modal_date_published"></span>
+                                    </div>
+                                    <div class="alinea_duration">
+                                        Durrée :
+                                        <span class="js_modal_duration"></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    Genres :
+                                    <span class="js_modal_genres"></span>
+                                </div>
+                                <div>
+                                    Réalisateurs :
+                                    <span class="js_modal_directors"></span>
+                                </div>
+                                <div>
+                                    Acteurs :
+                                    <span class="js_modal_actors"></span>
+                                </div>
+                                <div>
+                                    Titre original :
+                                    <span class="js_modal_original_title"></span>
+                                </div>
+                                <div>
+                                    Pays :
+                                    <span class="js_modal_countries"></span>
+                                </div>
+                                <div class="flex_box_row">
+                                    <div>
+                                        Score IMDB : 
+                                        <span class="js_modal_imdb_score"></span>
+                                    </div>
+                                    <div class="alinea_duration">
+                                        Classement :
+                                        <span class="js_modal_rated"></span>
+                                    </div>
+                                    <div class="alinea_duration">
+                                        Box-office mondial :
+                                        <span class="js_modal_worldwide_gross_income"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box_modal_synopsis">
+                            <div class="key_synopsis">
+                                 Synopsis :
+                            </div>
+                            <span class="js_modal_synopsis"></span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <p id="synopsis_best_movie"></p>
+        </div>
+        <aside>
+            <img id="poster_best_movie" src="" alt="Affiche du meilleur movie" />
+        </aside>
+    </section>
+
+    <section class="flex_box_column width_1000">
+        <h1 class="title_category">Films les mieux notés</h1>
+        <div class="flex_box_row nav_n_movies_category">
+            <nav class="nav_movies_left">
+                <a class="flex_box_row" href="#0x1">
+                    <div class="nav_art_generality arrow_left"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                </a>
+            </nav>
+
+            <div id="best_movies" class="flex_box_row movies_category">
+                <!-- <button class="movie_container" name="modal_0x1"> 
+                </button>
+
+                <button class="movie_container" name="modal_0x2"> 
+                </button>
+
+                <button class="movie_container" name="modal_0x3"> 
+                </button>
+
+                <button class="movie_container" name="modal_0x4"> 
+                </button>
+
+                <button class="movie_container" name="modal_0x5"> 
+                </button>
+
+                <button class="movie_container" name="modal_0x6"> 
+                </button>
+
+                <button class="movie_container" name="modal_0x7"> 
+                </button> -->
+            </div>
+
+            <nav class="nav_movies_right">
+                <a class="flex_box_row" href="#0x6">
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality arrow_right"></div>
+                </a>
+            </nav>
+        </div>
+    </section>
+
+    <section class="flex_box_column width_1000">
+        <h1 id="category1" class="title_category"></h1>
+        <div class="flex_box_row nav_n_movies_category">
+            <nav class="nav_movies_left">
+                <a class="flex_box_row" href="#1x1">
+                    <div class="nav_art_generality arrow_left"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                </a>
+            </nav>
+
+            <div id="best_category1_movies" class="flex_box_row movies_category">
+            </div>
+
+            <nav class="nav_movies_right">
+                <a class="flex_box_row" href="#1x7">
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality arrow_right"></div>
+                </a>
+            </nav>
+        </div>
+    </section>
+
+    <section class="flex_box_column width_1000">
+        <h1 id="category2" class="title_category"></h1>
+        <div class="flex_box_row nav_n_movies_category">
+            <nav class="nav_movies_left">
+                <a class="flex_box_row" href="#2x1">
+                    <div class="nav_art_generality arrow_left"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                </a>
+            </nav>
+
+            <div id="best_category2_movies" class="flex_box_row movies_category">
+            </div>
+
+            <nav class="nav_movies_right">
+                <a class="flex_box_row" href="#2x7">
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality arrow_right"></div>
+                </a>
+            </nav>
+        </div>
+    </section>
+
+    <section class="flex_box_column width_1000">
+        <h1 id="category3" class="title_category"></h1>
+        <div class="flex_box_row nav_n_movies_category">
+            <nav class="nav_movies_left">
+                <a class="flex_box_row" href="#3x1">
+                    <div class="nav_art_generality arrow_left"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                </a>
+            </nav>
+
+            <div id="best_category3_movies" class="flex_box_row movies_category">
+            </div>
+
+            <nav class="nav_movies_right">
+                <a class="flex_box_row" href="#3x7">
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality pave"></div>
+                    <div class="nav_art_generality arrow_right"></div>
+                </a>
+            </nav>
+        </div>
+    </section>
+
+    <section id="tempo"></section>
+
+    <!-- <script type="text/javascript" src="static/js/get_id_movies.js"></script> -->
+    <!-- <script type="text/javascript" src="app.js"></script> -->
+    <!-- <script type="text/javascript" src="static/js/test.js"></script> -->
+    <!-- <script type="text/javascript" src="static/js/get_id_category.js"></script> -->
+    <script type="text/javascript" src="static/js/v2.js"></script>
+</body>
+</html>
