@@ -43,6 +43,7 @@ max-width: 1000px;}
     /* Relating to header site */
     #header_site
     {background-color: #212121;
+    min-width: max-content;
     justify-content: space-between;
     align-items: flex-end;}
 
@@ -177,6 +178,7 @@ max-width: 1000px;}
         #best_movie
         {color: black;
         text-align: justify;
+        min-width: min-content;
         }
 
         #infos_best_movie

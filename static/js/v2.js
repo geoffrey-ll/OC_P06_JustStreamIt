@@ -1,4 +1,4 @@
-// 0. Définir les adresses des URLS
+// 0. Définir les catégories et les adresses URLS
 async function choosingCategories() {
     const genres = ["", "biography", "sci-fi", "adventure"]; // maximun 4 genres. Idéalement 4.
     for (const genre of genres) {
@@ -8,20 +8,18 @@ async function choosingCategories() {
     };
 };
 
-
 async function urlsCategory(genre, countCategory) {
     for (let i = 1; i <= 2; i++) {
         const url = `http://localhost:8000/api/v1/titles/?genre=${genre}` + 
                     `&page=${i}&sort_by=-imdb_score%2C-votes`;
         const countPage = i;
-        await loadData(url, genre, countCategory, countPage);
+        await loadSortCategoryData(url, genre, countCategory, countPage);
     };
 };
 
 
-// 1. Télécharger les informations des films depuis le serveur
-
-async function loadData(url, genre, countCategory, countPage) {
+// 1. Télécharger les informations des classement et des films depuis le serveur
+async function loadSortCategoryData(url, genre, countCategory, countPage) {
     await fetch(url, {
         method: "GET",
         headers: {
@@ -30,22 +28,36 @@ async function loadData(url, genre, countCategory, countPage) {
         }
     })
         .then(res => res.json())
-        .then(json => displayData(json, genre, countCategory, countPage))
+        .then(json => displayCategoryData(json, genre, countCategory, countPage))
         .catch(err => console.log(err));
 };
 
+async function loadMovieData(idMovie) {
+    var movieData;
+    await fetch(`http://localhost:8000/api/v1/titles/${idMovie}`, {
+        method: "GET",
+        header: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    })
+    .then(res => res.json())
+    .then(json => {movieData = json;})
+    .catch(err => console.log(err));
+    return movieData;
+};
 
-// 2. Créer le blocs d'éléments Html pour chaque film à afficher
 
-async function displayData(json, genre, countCategory, countPage) {
+// 2. & 3. Création et chargement de blocs HTML dans la page HTML
+async function displayCategoryData(json, genre, countCategory, countPage) {
     // Serait intéréssant d'ajouter une fonction ici (avant le remplissage) 
     // qui ajouterait le code HTML de la structure des catégories. 
     // On aurait alors autant que catégories que renseignées dans choosingCategories().
-
-
     if (countCategory === "00") { // CountCategory = "00" correspond à la section meilleur film.
         if (countPage === 1) {
-            displayBestMovie(json);
+            let idBestMovie = json.results[0].id;
+            let bestMovieData = await loadMovieData(idBestMovie);
+            displayBestMovie(bestMovieData);
         };
     }else {
         if (countPage === 1) {
@@ -70,19 +82,55 @@ async function displayData(json, genre, countCategory, countPage) {
     };
 };
 
-function displayBestMovie(json) {
-    document.getElementById("title_best_movie").innerHTML = json.results[0].title
-    document.getElementById("synopsis_best_movie").innerHTML = "Seulement pour tester"
-    document.getElementById("poster_best_movie").setAttribute("src", json.results[0].image_url)
-    document.getElementById("poster_best_movie").setAttribute("alt", `poster of ${json.results[0].title}`)
+function displayBestMovie(bestMovieData) {
+    document.getElementById("title_best_movie").innerHTML = 
+        bestMovieData.original_title;
+    document.getElementById("synopsis_best_movie").innerHTML = 
+        bestMovieData.long_description;
+    document.getElementById("poster_best_movie").setAttribute(
+        "src", bestMovieData.image_url
+    );
+    document.getElementById("poster_best_movie").setAttribute(
+        "alt", `poster of ${bestMovieData.original_title}`
+    );
 };
 
 function displayNameCategory(genre, countCategory) {
-    let nameCategory = document.getElementById(`title_category${countCategory}`);
+    let nameCategoryContainer = 
+        document.getElementById(`title_category${countCategory}`);
     let translation = translateNameCategory(genre);
-    nameCategory.innerHTML = `Films ${translation}`
+    nameCategoryContainer.innerHTML = `Films ${translation}`;
 };
 
+async function displayPosterMovies(json, countCategory, idxStart, countMovie) {
+    let categoryContainer = 
+        document.getElementById(`best_category${countCategory}_movies`);
+    for (let i = idxStart; i <= countMovie; i++) {
+        let film = json.results[i];
+        let movieData = await loadMovieData(film.id);
+        let originalTitle = movieData.original_title;
+        categoryContainer.innerHTML += `
+                <button id="${film.id}" class="movie_container" 
+                title="${originalTitle}">
+                    <img class="movie_poster_container" src="${film.image_url}"
+                    alt="poster of «${originalTitle}»" />
+                </button>
+        `
+    };
+        //document.getElementById(`${film.id}`).addEventListener('Click', displayModal(`${film.id}`));
+};
+
+
+
+
+
+
+// 4. Ajouter les évènements au clic sur les éléments Html
+
+document.addEventListener('DOMContentLoaded', main());
+
+
+// 5. Autres
 function translateNameCategory(genre) {
     let translation = {
         "": "les mieux notés",
@@ -115,48 +163,7 @@ function translateNameCategory(genre) {
     return translation[genre];
 };
 
-async function displayPosterMovies(json, countCategory, idxStart, countMovie) {
-    let categoryContainer = document.getElementById(`best_category${countCategory}_movies`);
-    for (let i = idxStart; i <= countMovie; i++) {
-        let film = json.results[i];
-        let originalTitle = await getOriginalTitle(film.id);
-        categoryContainer.innerHTML += 
-                `
-                <button id="${film.id}" class="movie_container" 
-                title="${originalTitle}">
-                    <img class="movie_poster_container" src="${film.image_url}"
-                    alt="poster of «${originalTitle}»" />
-                </button>
-                `
-    };
-        //document.getElementById(`${film.id}`).addEventListener('Click', displayModal(`${film.id}`));
-};
-
-
-async function getOriginalTitle(idMovie) {
-    var originalTitle;
-    await fetch(`http://localhost:8000/api/v1/titles/${idMovie}`, {
-        method: "GET",
-        header: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        }
-    })
-    .then(res => res.json())
-    .then(json => {originalTitle = json.original_title;})
-    .catch(err => console.log(err));
-    return originalTitle;
-};
-
-// 3. Ajouter le bloc Html du film dans la page Html
-
-
-// 4. Ajouter les évènements au clic sur les éléments Html
-
-
 function main() {
     urlsCategory("", "00");
     choosingCategories();
-}
-
-document.addEventListener('DOMContentLoaded', main());
+};
