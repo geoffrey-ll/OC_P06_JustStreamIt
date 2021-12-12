@@ -21,13 +21,13 @@
         </nav>
     </header>
 
-    <section class="flex_box_row width_1000 margin_category" id="best_movie">
-        <div class="" id="infos_best_movie">
+    <section id="best_movie" class="flex_box_row width_1000 margin_category">
+        <div id="infos_best_movie" class="">
             <h1 id="title_best_movie"></h1>
             <!-- Lien à ajouter ci-dessous -->
             <div class="flex_box_column center" id="">
                 <button name="modal_best_movie" class="js_modal button_generic">Plus d'informations</button>
-                <aside id="modal_best_movie" class="modal flex_box_column center" style="display:none;" aria-hidden="true">
+                <!-- <aside id="modal_best_movie" class="modal flex_box_column center" style="display:none;" aria-hidden="true">
                     <div class="modal_wrapper js_modal_stop">
                         <div class="modal_head flex_box_row">
                             <button class="js_modal_close button_generic">X</button>
@@ -91,17 +91,17 @@
                             <span class="js_modal_synopsis"></span>
                         </div>
                     </div>
-                </aside>
+                </aside> -->
             </div>
             <p id="synopsis_best_movie"></p>
         </div>
         <aside>
-            <img id="poster_best_movie" src="" alt="Affiche du meilleur movie" />
+            <img id="poster_best_movie" src="" alt="Affiche du meilleur film" />
         </aside>
     </section>
 
     <section class="flex_box_column width_1000">
-        <h1 class="title_category">Films les mieux notés</h1>
+        <h1 id="title_category0" class="title_category"></h1>
         <div class="flex_box_row nav_n_movies_category">
             <nav class="nav_movies_left">
                 <a class="flex_box_row" href="#0x1">
@@ -111,27 +111,7 @@
                 </a>
             </nav>
 
-            <div id="best_movies" class="flex_box_row movies_category">
-                <!-- <button class="movie_container" name="modal_0x1"> 
-                </button>
-
-                <button class="movie_container" name="modal_0x2"> 
-                </button>
-
-                <button class="movie_container" name="modal_0x3"> 
-                </button>
-
-                <button class="movie_container" name="modal_0x4"> 
-                </button>
-
-                <button class="movie_container" name="modal_0x5"> 
-                </button>
-
-                <button class="movie_container" name="modal_0x6"> 
-                </button>
-
-                <button class="movie_container" name="modal_0x7"> 
-                </button> -->
+            <div id="best_category0_movies" class="flex_box_row movies_category">
             </div>
 
             <nav class="nav_movies_right">
@@ -145,7 +125,7 @@
     </section>
 
     <section class="flex_box_column width_1000">
-        <h1 id="category1" class="title_category"></h1>
+        <h1 id="title_category1" class="title_category"></h1>
         <div class="flex_box_row nav_n_movies_category">
             <nav class="nav_movies_left">
                 <a class="flex_box_row" href="#1x1">
@@ -169,7 +149,7 @@
     </section>
 
     <section class="flex_box_column width_1000">
-        <h1 id="category2" class="title_category"></h1>
+        <h1 id="title_category2" class="title_category"></h1>
         <div class="flex_box_row nav_n_movies_category">
             <nav class="nav_movies_left">
                 <a class="flex_box_row" href="#2x1">
@@ -193,7 +173,7 @@
     </section>
 
     <section class="flex_box_column width_1000">
-        <h1 id="category3" class="title_category"></h1>
+        <h1 id="title_category3" class="title_category"></h1>
         <div class="flex_box_row nav_n_movies_category">
             <nav class="nav_movies_left">
                 <a class="flex_box_row" href="#3x1">

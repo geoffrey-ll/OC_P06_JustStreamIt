@@ -35,7 +35,8 @@ border-radius: 20px / 30px;}
 
 /* Relating to parts */
 .width_1000
-{width: 65%}
+{width: 65%;
+max-width: 1000px;}
 
 
 
@@ -175,10 +176,12 @@ border-radius: 20px / 30px;}
         /* Category : Best movie */
         #best_movie
         {color: black;
-        text-align: justify;}
+        text-align: justify;
+        }
 
         #infos_best_movie
-        {margin-right: 30px;}
+        {margin-right: 30px;
+        width: 79.8%;}
 
         #poster_best_movie
         {height: 400px;
