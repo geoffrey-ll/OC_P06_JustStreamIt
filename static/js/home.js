@@ -105,18 +105,17 @@ function displayNameCategory(genre, countCategory) {
 
 async function displayPosterMovies(json, countCategory, idxStart, countMovie) {
     let categoryContainer = 
-        document.getElementById(`best_category${countCategory}_movies`);
+        document.getElementById(`carrousel${countCategory}`);
     for (let i = idxStart; i <= countMovie; i++) {
         let film = json.results[i];
         let movieData = await loadMovieData(film.id);
         let originalTitle = movieData.original_title;
         categoryContainer.innerHTML += `
-                <button id="${film.id}" class="movie_container" 
-                title="${originalTitle}"
-                onclick="openModal(${film.id})">
-                    <img class="movie_poster_container" src="${film.image_url}"
-                    alt="poster of «${originalTitle}»" />
-                </button>
+            <button id="${film.id}" class="movie_container" 
+            title="${originalTitle}" onclick="openModal(${film.id})">
+                <img class="movie_poster_container" src="${film.image_url}"
+                alt="poster of «${originalTitle}»" />
+            </button>
         `
     };
 };

@@ -15,7 +15,7 @@
 
         <nav>
             <ul class="flex_box_row menu_nav_site">
-                <li><a href="index.html" class="option_nav_site">Accueil</a></li>
+                <li><a href="index_v2.html" class="option_nav_site">Accueil</a></li>
                 <!-- Indiquer le lien du href ci-dessous -->
                 <li><a href="#.html" class="option_nav_site">Catégories</a></li>
             </ul>
@@ -40,22 +40,25 @@
         <h1 id="title_category0" class="title_category"></h1>
         <div class="flex_box_row nav_n_movies_category">
             <nav class="nav_movies_left">
-                <a class="flex_box_row" href="#0x1">
+                <button id="left_category0" class="flex_box_row button_nav"
+                onclick="moveCarrouselLeft(id)">
                     <div class="nav_art_generality arrow_left"></div>
                     <div class="nav_art_generality pave"></div>
                     <div class="nav_art_generality pave"></div>
-                </a>
+                </button>
             </nav>
 
             <div id="best_category0_movies" class="flex_box_row movies_category">
+                <div id="carrousel0" class="flex_box_row to_move"></div>
             </div>
 
             <nav class="nav_movies_right">
-                <a class="flex_box_row" href="#0x6">
+                <button id="right_category0" class="flex_box_row button_nav"
+                onclick="moveCarrouselRight(id)">
                     <div class="nav_art_generality pave"></div>
                     <div class="nav_art_generality pave"></div>
                     <div class="nav_art_generality arrow_right"></div>
-                </a>
+                </button>
             </nav>
         </div>
     </section>
@@ -64,22 +67,25 @@
         <h1 id="title_category1" class="title_category"></h1>
         <div class="flex_box_row nav_n_movies_category">
             <nav class="nav_movies_left">
-                <a class="flex_box_row" href="#1x1">
+                <button id="left_category1" class="flex_box_row button_nav"
+                onclick="moveCarrouselLeft(id)">
                     <div class="nav_art_generality arrow_left"></div>
                     <div class="nav_art_generality pave"></div>
                     <div class="nav_art_generality pave"></div>
-                </a>
+                </button>
             </nav>
 
             <div id="best_category1_movies" class="flex_box_row movies_category">
+                <div id="carrousel1" class="flex_box_row to_move"></div>
             </div>
 
             <nav class="nav_movies_right">
-                <a class="flex_box_row" href="#1x7">
+                <button id="right_category1" class="flex_box_row button_nav"
+                onclick="moveCarrouselRight(id)">
                     <div class="nav_art_generality pave"></div>
                     <div class="nav_art_generality pave"></div>
                     <div class="nav_art_generality arrow_right"></div>
-                </a>
+                </button>
             </nav>
         </div>
     </section>
@@ -88,22 +94,25 @@
         <h1 id="title_category2" class="title_category"></h1>
         <div class="flex_box_row nav_n_movies_category">
             <nav class="nav_movies_left">
-                <a class="flex_box_row" href="#2x1">
+                <button id="left_category2" class="flex_box_row button_nav"
+                onclick="moveCarrouselLeft(id)">
                     <div class="nav_art_generality arrow_left"></div>
                     <div class="nav_art_generality pave"></div>
                     <div class="nav_art_generality pave"></div>
-                </a>
+                </button>
             </nav>
 
             <div id="best_category2_movies" class="flex_box_row movies_category">
+                <div id="carrousel2" class="flex_box_row to_move"></div>
             </div>
 
             <nav class="nav_movies_right">
-                <a class="flex_box_row" href="#2x7">
+                <button id="right_category2" class="flex_box_row button_nav"
+                onclick="moveCarrouselRight(id)">
                     <div class="nav_art_generality pave"></div>
                     <div class="nav_art_generality pave"></div>
                     <div class="nav_art_generality arrow_right"></div>
-                </a>
+                </button>
             </nav>
         </div>
     </section>
@@ -112,29 +121,31 @@
         <h1 id="title_category3" class="title_category"></h1>
         <div class="flex_box_row nav_n_movies_category">
             <nav class="nav_movies_left">
-                <a class="flex_box_row" href="#3x1">
+                <button id="left_category3" class="flex_box_row button_nav"
+                onclick="moveCarrouselLeft(id)">
                     <div class="nav_art_generality arrow_left"></div>
                     <div class="nav_art_generality pave"></div>
                     <div class="nav_art_generality pave"></div>
-                </a>
+                </button>
             </nav>
 
             <div id="best_category3_movies" class="flex_box_row movies_category">
+                <div id="carrousel3" class="flex_box_row to_move"></div>
             </div>
 
             <nav class="nav_movies_right">
-                <a class="flex_box_row" href="#3x7">
+                <button id="right_category3" class="flex_box_row button_nav"
+                onclick="moveCarrouselRight(id)">
                     <div class="nav_art_generality pave"></div>
                     <div class="nav_art_generality pave"></div>
                     <div class="nav_art_generality arrow_right"></div>
-                </a>
+                </button>
             </nav>
         </div>
     </section>
 
     <section id="modal_window">
         <aside id="modal_pattern" class="modal flex_box_column center" aria-hidden="true" >
-        <!-- style="display:none;"> -->
             <div class="modal_wrapper js_modal_stop">
                 <div class="modal_head flex_box_row">
                     <button class="js_modal_close button_generic" 
@@ -204,5 +215,6 @@
 
     <script type="text/javascript" src="static/js/home.js"></script>
     <script type="text/javascript" src="static/js/modal.js"></script>
+    <script type="text/javascript" src="static/js/carrousel.js"></script>
 </body>
 </html>
