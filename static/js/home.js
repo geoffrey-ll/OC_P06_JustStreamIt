@@ -3,7 +3,6 @@ async function choosingCategories() {
     const genres = ["", "biography", "sci-fi", "adventure"]; // maximun 4 genres. Idéalement 4.
     for (const genre of genres) {
         const countCategory = genres.indexOf(genre);
-        // console.log(genre, countCategory)
         await urlsCategory(genre, countCategory);
     };
 };
@@ -83,9 +82,9 @@ async function displayCategoryData(json, genre, countCategory, countPage) {
 };
 
 function displayBestMovie(bestMovieData) {
-    document.getElementById("title_best_movie").innerHTML = 
+    document.getElementById("title_best_movie").innerText = 
         bestMovieData.original_title;
-    document.getElementById("synopsis_best_movie").innerHTML = 
+    document.getElementById("synopsis_best_movie").innerText = 
         bestMovieData.long_description;
     document.getElementById("poster_best_movie").setAttribute(
         "src", bestMovieData.image_url
@@ -93,6 +92,8 @@ function displayBestMovie(bestMovieData) {
     document.getElementById("poster_best_movie").setAttribute(
         "alt", `poster of ${bestMovieData.original_title}`
     );
+    document.getElementById("show_best_movie")
+    .setAttribute("onclick", `openModal('${bestMovieData.id}')`)
 };
 
 function displayNameCategory(genre, countCategory) {
@@ -111,13 +112,13 @@ async function displayPosterMovies(json, countCategory, idxStart, countMovie) {
         let originalTitle = movieData.original_title;
         categoryContainer.innerHTML += `
                 <button id="${film.id}" class="movie_container" 
-                title="${originalTitle}">
+                title="${originalTitle}"
+                onclick="openModal(${film.id})">
                     <img class="movie_poster_container" src="${film.image_url}"
                     alt="poster of «${originalTitle}»" />
                 </button>
         `
     };
-        //document.getElementById(`${film.id}`).addEventListener('Click', displayModal(`${film.id}`));
 };
 
 
@@ -167,3 +168,5 @@ function main() {
     urlsCategory("", "00");
     choosingCategories();
 };
+
+

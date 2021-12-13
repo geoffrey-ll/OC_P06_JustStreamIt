@@ -9,7 +9,8 @@
 <body class="flex_box_column center">
     <header class="flex_box_row width_1000" id="header_site">
         <div>
-            <a href="index.html"><img class="logo_site" src="static/img/logo_juststreamit.png" alt="Logo JustStreamIt" /></a>
+            <a href="index.html"><img class="logo_site"  alt="Logo JustStreamIt"
+                src="static/img/logo_juststreamit.png" /></a>
         </div>
 
         <nav>
@@ -24,75 +25,10 @@
     <section id="best_movie" class="flex_box_row width_1000 margin_category">
         <div id="infos_best_movie" class="">
             <h1 id="title_best_movie"></h1>
-            <!-- Lien à ajouter ci-dessous -->
-            <div class="flex_box_column center" id="">
-                <button name="modal_best_movie" class="js_modal button_generic">Plus d'informations</button>
-                <!-- <aside id="modal_best_movie" class="modal flex_box_column center" style="display:none;" aria-hidden="true">
-                    <div class="modal_wrapper js_modal_stop">
-                        <div class="modal_head flex_box_row">
-                            <button class="js_modal_close button_generic">X</button>
-                            <h1 class="js_modal_title"></h1>
-                        </div>
-                        <div class="flex_box_row">
-                            <aside>
-                                <img class="js_modal_poster" src="" alt="Affiche du movie" />
-                            </aside>
-                            <div class="modal_infos flex_box_column">
-                                <div class="flex_box_row">
-                                    <div>
-                                        Sorti en salle le :
-                                        <span class="js_modal_date_published"></span>
-                                    </div>
-                                    <div class="alinea_duration">
-                                        Durrée :
-                                        <span class="js_modal_duration"></span>
-                                    </div>
-                                </div>
-                                <div>
-                                    Genres :
-                                    <span class="js_modal_genres"></span>
-                                </div>
-                                <div>
-                                    Réalisateurs :
-                                    <span class="js_modal_directors"></span>
-                                </div>
-                                <div>
-                                    Acteurs :
-                                    <span class="js_modal_actors"></span>
-                                </div>
-                                <div>
-                                    Titre original :
-                                    <span class="js_modal_original_title"></span>
-                                </div>
-                                <div>
-                                    Pays :
-                                    <span class="js_modal_countries"></span>
-                                </div>
-                                <div class="flex_box_row">
-                                    <div>
-                                        Score IMDB : 
-                                        <span class="js_modal_imdb_score"></span>
-                                    </div>
-                                    <div class="alinea_duration">
-                                        Classement :
-                                        <span class="js_modal_rated"></span>
-                                    </div>
-                                    <div class="alinea_duration">
-                                        Box-office mondial :
-                                        <span class="js_modal_worldwide_gross_income"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box_modal_synopsis">
-                            <div class="key_synopsis">
-                                 Synopsis :
-                            </div>
-                            <span class="js_modal_synopsis"></span>
-                        </div>
-                    </div>
-                </aside> -->
-            </div>
+            <div id="" class="flex_box_column center">
+                <button id="show_best_movie" name="modal_best_movie" 
+                class="js_modal button_generic">Plus d'informations</button>
+             </div>
             <p id="synopsis_best_movie"></p>
         </div>
         <aside>
@@ -196,12 +132,77 @@
         </div>
     </section>
 
-    <section id="tempo"></section>
+    <section id="modal_window">
+        <aside id="modal_pattern" class="modal flex_box_column center" aria-hidden="true" >
+        <!-- style="display:none;"> -->
+            <div class="modal_wrapper js_modal_stop">
+                <div class="modal_head flex_box_row">
+                    <button class="js_modal_close button_generic" 
+                    onclick="closeModal()">X</button>
+                    <h1 id="js_modal_title"></h1>
+                </div>
+                <div class="flex_box_row">
+                    <aside>
+                        <img id="js_modal_poster" src="" alt="Affiche du film" />
+                    </aside>
+                    <div class="modal_infos flex_box_column">
+                        <div class="flex_box_row">
+                            <div>
+                                Sorti en salle le :
+                                <span id="js_modal_date_published"></span>
+                            </div>
+                            <div class="alinea_duration">
+                                Durrée :
+                                <span id="js_modal_duration"></span>
+                            </div>
+                        </div>
+                        <div>
+                            Genres :
+                            <span id="js_modal_genres"></span>
+                        </div>
+                        <div>
+                            Réalisateurs :
+                            <span id="js_modal_directors"></span>
+                        </div>
+                        <div>
+                            Acteurs :
+                            <span id="js_modal_actors"></span>
+                        </div>
+                        <div>
+                            Titre original :
+                            <span id="js_modal_original_title"></span>
+                        </div>
+                        <div>
+                            Pays :
+                            <span id="js_modal_countries"></span>
+                        </div>
+                        <div class="flex_box_row">
+                            <div>
+                                Score IMDB : 
+                                <span id="js_modal_imdb_score"></span>
+                            </div>
+                            <div class="alinea_duration">
+                                Classement :
+                                <span id="js_modal_rated"></span>
+                            </div>
+                            <div class="alinea_duration">
+                                Box-office mondial :
+                                <span id="js_modal_worldwide_gross_income"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box_modal_synopsis">
+                    <div class="key_synopsis">
+                         Synopsis :
+                    </div>
+                    <span id="js_modal_long_description"></span>
+                </div>
+            </div>
+        </aside>
+    </section>
 
-    <!-- <script type="text/javascript" src="static/js/get_id_movies.js"></script> -->
-    <!-- <script type="text/javascript" src="app.js"></script> -->
-    <!-- <script type="text/javascript" src="static/js/test.js"></script> -->
-    <!-- <script type="text/javascript" src="static/js/get_id_category.js"></script> -->
     <script type="text/javascript" src="static/js/v2.js"></script>
+    <script type="text/javascript" src="static/js/modal.js"></script>
 </body>
 </html>

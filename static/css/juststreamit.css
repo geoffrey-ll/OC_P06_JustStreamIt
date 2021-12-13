@@ -58,9 +58,13 @@ max-width: 1000px;}
     color: #64b164;}
 
     /* Relating to modal window */
+    #modal_pattern {
+        display: none;
+    }
+
     .modal
     {position: fixed;
-    color: black;
+    color: rgb(200, 200, 200); /* TODO: blanc pour key ; vert pour values */
     top: 0;
     left: 0;
     width: 100%;
@@ -280,3 +284,4 @@ z-index: 1;
 top: 0;
 left: 0;
 opacity: 0;}
+
