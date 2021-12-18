@@ -27,7 +27,7 @@ async function loadSortCategoryData(url, genre, countCategory, countPage) {
         }
     })
         .then(res => res.json())
-        .then(json => displayCategoryData(json, genre, countCategory, countPage))
+        .then(json => createHTMLCategories(json, genre, countCategory, countPage))
         .catch(err => console.log(err));
 };
 
@@ -47,7 +47,44 @@ async function loadMovieData(idMovie) {
 };
 
 
+
 // 2. & 3. Création et chargement de blocs HTML dans la page HTML
+async function createHTMLCategories(json, genre, countCategory, countPage) {
+    if (countCategory !== "00") {
+        if (countPage === 1) {
+            document.getElementById("categories").innerHTML += `
+            <section>
+                <h1 id="title-category-${countCategory}" class="title-category"></h1>
+                <div class="flex-box-row container-movies-and-nav">
+                    <nav class="nav-carrousel-left">
+                        <button id="shift-left-carrousel-${countCategory}" 
+                        class="flex-box-row button-nav" onclick="moveCarrouselLeft(id)">
+                            <div class="nav-art-generality arrow-left"></div>
+                            <div class="nav-art-generality rectangle"></div>
+                            <div class="nav-art-generality rectangle"></div>
+                        </button>
+                    </nav>
+
+                    <div class="flex-box-row visible-movies-category">
+                        <div id="js-carrousel-${countCategory}" class="flex-box-row movable"></div>
+                    </div>
+
+                    <nav class="nav-carrousel-right">
+                        <button id="shift-right-carrousel-${countCategory}"
+                        class="flex-box-row button-nav" onclick="moveCarrouselRight(id)">
+                            <div class="nav-art-generality rectangle"></div>
+                            <div class="nav-art-generality rectangle"></div>
+                            <div class="nav-art-generality arrow-right"></div>
+                        </button>
+                    </nav>
+                </div>
+            </section>
+            `;
+        }
+    }
+    displayCategoryData(json, genre, countCategory, countPage);
+};
+
 async function displayCategoryData(json, genre, countCategory, countPage) {
     // Serait intéréssant d'ajouter une fonction ici (avant le remplissage) 
     // qui ajouterait le code HTML de la structure des catégories. 
@@ -82,30 +119,30 @@ async function displayCategoryData(json, genre, countCategory, countPage) {
 };
 
 function displayBestMovie(bestMovieData) {
-    document.getElementById("title_best_movie").innerText = 
+    document.getElementById("title-best-movie").innerText = 
         bestMovieData.original_title;
-    document.getElementById("synopsis_best_movie").innerText = 
+    document.getElementById("js-synopsis-best-movie").innerText = 
         bestMovieData.long_description;
-    document.getElementById("poster_best_movie").setAttribute(
+    document.getElementById("js-poster-best-movie").setAttribute(
         "src", bestMovieData.image_url
     );
-    document.getElementById("poster_best_movie").setAttribute(
+    document.getElementById("js-poster-best-movie").setAttribute(
         "alt", `poster of ${bestMovieData.original_title}`
     );
-    document.getElementById("show_best_movie")
+    document.getElementById("js-show-best-movie")
     .setAttribute("onclick", `openModal('${bestMovieData.id}')`)
 };
 
 function displayNameCategory(genre, countCategory) {
     let nameCategoryContainer = 
-        document.getElementById(`title_category${countCategory}`);
+        document.getElementById(`title-category-${countCategory}`);
     let translation = translateNameCategory(genre);
     nameCategoryContainer.innerHTML = `Films ${translation}`;
 };
 
 async function displayPosterMovies(json, countCategory, idxStart, countMovie) {
     let categoryContainer = 
-        document.getElementById(`carrousel${countCategory}`);
+        document.getElementById(`js-carrousel-${countCategory}`);
     for (let i = idxStart; i <= countMovie; i++) {
         let film = json.results[i];
         let movieData = await loadMovieData(film.id);
@@ -147,7 +184,7 @@ function translateNameCategory(genre) {
         "fantasy": "fantastique",
         "film-noir": "en noir & blanc",
         "history": "historique",
-        "horor": "d'épouvante-horreur",
+        "horror": "d'épouvante-horreur",
         "music": "de comédie musical",
         "musical": "musical",
         "mystery": "policier",       //
@@ -166,6 +203,7 @@ function translateNameCategory(genre) {
 function main() {
     urlsCategory("", "00");
     choosingCategories();
+    initializeLocationTrackingCarrousel();
 };
 
 

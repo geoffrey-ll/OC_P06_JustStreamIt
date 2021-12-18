@@ -2,39 +2,41 @@ let modalDisplay = "no"; // Utile pour bloquer focus dans modal.
 let previouslyFocusElement = null;
 
 async function openModal (idMovie) {
-    const modalPattern = document.querySelector("#modal_pattern");
-    movieData = await loadMovieData(idMovie); // dans "home.js"
+    const modalPattern = document.querySelector("#js-modal-pattern");
+    movieData = await loadMovieData(idMovie); // dans "main.js"
     modalMovie = await loadModalMovie(movieData, modalPattern);
     return displayModal(modalMovie);
 };
 
 
 async function loadModalMovie(movieData, modalPattern) {
-    modalPattern.querySelector("#js_modal_title").innerText = 
+    modalPattern.querySelector("#js-modal-title").innerText = 
         movieData.title;
-    modalPattern.querySelector("#js_modal_poster").src = 
+    modalPattern.querySelector("#js-modal-poster").src = 
         movieData.image_url;
-    modalPattern.querySelector("#js_modal_date_published").innerText = 
+    modalPattern.querySelector("#js-modal-poster").alt = 
+        `Poster of '${movieData.original_title}' movie`;
+    modalPattern.querySelector("#js-modal-date-published").innerText = 
         movieData.date_published;
-    modalPattern.querySelector("#js_modal_duration").innerText = 
+    modalPattern.querySelector("#js-modal-duration").innerText = 
         heuresMinutes(movieData.duration);
-    modalPattern.querySelector("#js_modal_genres").innerText = 
+    modalPattern.querySelector("#js-modal-genres").innerText = 
         movieData.genres;
-    modalPattern.querySelector("#js_modal_directors").innerText = 
+    modalPattern.querySelector("#js-modal-directors").innerText = 
         movieData.directors;
-    modalPattern.querySelector("#js_modal_actors").innerText = 
+    modalPattern.querySelector("#js-modal-actors").innerText = 
         movieData.actors;
-    modalPattern.querySelector("#js_modal_original_title").innerText = 
+    modalPattern.querySelector("#js-modal-original-title").innerText = 
         movieData.original_title;
-    modalPattern.querySelector("#js_modal_countries").innerText = 
+    modalPattern.querySelector("#js-modal-countries").innerText = 
         movieData.countries;
-    modalPattern.querySelector("#js_modal_imdb_score").innerText = 
+    modalPattern.querySelector("#js-modal-imdb-score").innerText = 
         movieData.imdb_score;
-    modalPattern.querySelector("#js_modal_rated").innerText = 
+    modalPattern.querySelector("#js-modal-rated").innerText = 
         shortRatedNGross(movieData.rated);
-    modalPattern.querySelector("#js_modal_worldwide_gross_income").innerText = 
+    modalPattern.querySelector("#js-modal-worldwide-gross-income").innerText = 
         shortRatedNGross(movieData.worldwide_gross_income);
-    modalPattern.querySelector("#js_modal_long_description").innerText = 
+    modalPattern.querySelector("#js-modal-long-description").innerText = 
         movieData.long_description;
     modalMovie = modalPattern;
     return modalMovie;
@@ -68,26 +70,26 @@ async function displayModal(modalMovie) {
     modalDisplay = "yes"
     modalMovie.removeAttribute("aria-hidden"); // pour animation ouverture/fermeture
     modalMovie.style.display = "flex";
-    modalMovie.querySelector(".js_modal_close").focus();
+    modalMovie.querySelector(".js-modal-close").focus();
     modalMovie.addEventListener("click", closeModal);
-    modalMovie.querySelector(".js_modal_stop") // Empêche fermeture quand clique
+    modalMovie.querySelector(".js-modal-stop") // Empêche fermeture quand clique
         .addEventListener("click", stopPropagation); // dans fenêtre modal.
 };
 
 function closeModal() {
-    var modalMovie = document.querySelector("#modal_pattern");
+    var modalMovie = document.querySelector("#js-modal-pattern");
     if (previouslyFocusElement !== null) previouslyFocusElement.focus();
     modalMovie.setAttribute("aria-hidden", "true"); // pour animation ouverture/fermeture
     modalMovie.removeEventListener("click", closeModal);
-    modalMovie.querySelector(".js_modal_stop")
+    modalMovie.querySelector(".js-modal-stop")
         .removeEventListener("click", stopPropagation);
     const hideModal = function() {
         modalMovie.removeAttribute("style");
         modalMovie.removeEventListener("animationend", hideModal)
+        resetModal(modalMovie);
         modalDisplay = "no"
     };
     modalMovie.addEventListener("animationend", hideModal);
-    resetModal(modalMovie);
 };
 
 function stopPropagation(e) {
@@ -95,19 +97,20 @@ function stopPropagation(e) {
 };
 
 function resetModal(modalMovie) {
-    modalMovie.querySelector("#js_modal_title").innerText = "";
-    modalMovie.querySelector("#js_modal_poster").src = "";
-    modalMovie.querySelector("#js_modal_date_published").innerText = "";
-    modalMovie.querySelector("#js_modal_duration").innerText = "";
-    modalMovie.querySelector("#js_modal_genres").innerText = "";
-    modalMovie.querySelector("#js_modal_directors").innerText = "";
-    modalMovie.querySelector("#js_modal_actors").innerText = "";
-    modalMovie.querySelector("#js_modal_original_title").innerText = "";
-    modalMovie.querySelector("#js_modal_countries").innerText = "";
-    modalMovie.querySelector("#js_modal_imdb_score").innerText = "";
-    modalMovie.querySelector("#js_modal_rated").innerText = "";
-    modalMovie.querySelector("#js_modal_worldwide_gross_income").innerText = "";
-    modalMovie.querySelector("#js_modal_long_description").innerText = "";
+    modalMovie.querySelector("#js-modal-title").innerText = "";
+    modalMovie.querySelector("#js-modal-poster").src = "";
+    modalMovie.querySelector("#js-modal-poster").alt = "Poster of movie";
+    modalMovie.querySelector("#js-modal-date-published").innerText = "";
+    modalMovie.querySelector("#js-modal-duration").innerText = "";
+    modalMovie.querySelector("#js-modal-genres").innerText = "";
+    modalMovie.querySelector("#js-modal-directors").innerText = "";
+    modalMovie.querySelector("#js-modal-actors").innerText = "";
+    modalMovie.querySelector("#js-modal-original-title").innerText = "";
+    modalMovie.querySelector("#js-modal-countries").innerText = "";
+    modalMovie.querySelector("#js-modal-imdb-score").innerText = "";
+    modalMovie.querySelector("#js-modal-rated").innerText = "";
+    modalMovie.querySelector("#js-modal-worldwide-gross-income").innerText = "";
+    modalMovie.querySelector("#js-modal-long-description").innerText = "";
     modalPattern = modalMovie;
     return modalPattern;
 };

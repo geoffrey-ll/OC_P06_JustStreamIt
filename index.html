@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/css/style.css" />
+
+    <title>Quel film ce soir ? - Just Stream It</title>
+</head>
+
+<body class="flex-box-column center">
+    <header class="flex-box-row width-1000px" id="header-site">
+        <div>
+            <a href="index.html">
+                <img class="logo-site"  alt="Logo de JustStreamIt"
+                src="static/images/logo-juststreamit.png" />
+            </a>
+        </div>
+
+        <nav>
+            <ul class="flex-box-row menu-site">
+                <li>
+                    <a href="index.html" class="menu-option-site">
+                        Accueil
+                    </a>
+                </li>
+                <li>
+                    <a href="#title-category-1" class="menu-option-site">
+                        Catégories
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="best-movie" class="flex-box-row width-1000px margin-category">
+        <div id="infos-best-movie">
+            <h1 id="title-best-movie"> </h1>
+            <div class="flex-box-column center">
+                <button id="js-show-best-movie" class="button-generic"
+                type="button" name="more info best movie">
+                    Plus d'informations
+                </button>
+             </div>
+            <p id="js-synopsis-best-movie"></p>
+        </div>
+        <aside>
+            <img id="js-poster-best-movie" src="static/images/api-no-response.jpg" 
+            alt="Poster of the best movie, all categories" />
+        </aside>
+    </section>
+
+    <div id="categories" class="flex-box-column width-1000px">
+    </div>
+
+
+    <div>
+        <aside id="js-modal-pattern" class="modal-box flex-box-column center"
+        aria-hidden="true">
+            <div class="modal-wrapper js-modal-stop">
+
+                <div class="modal-head flex-box-row">
+                    <button class="js-modal-close button-generic" 
+                    onclick="closeModal()">
+                    X
+                    </button>
+                    <h2 id="js-modal-title"> </h2>
+                </div>
+
+                <div class="flex-box-row">
+                    <aside>
+                        <img id="js-modal-poster" alt="Poster of movie" 
+                        src="static/images/api-no-response.jpg"/>
+                    </aside>
+                    <div class="justify-space-between flex-box-column">
+                        <div class="flex-box-row">
+                            <div>
+                                Sorti en salle le :
+                                <span id="js-modal-date-published"></span>
+                            </div>
+                            <div class="alinea-duration">
+                                Durrée :
+                                <span id="js-modal-duration"></span>
+                            </div>
+                        </div>
+                        <div>
+                            Genres :
+                            <span id="js-modal-genres"></span>
+                        </div>
+                        <div>
+                            Réalisateurs :
+                            <span id="js-modal-directors"></span>
+                        </div>
+                        <div>
+                            Acteurs :
+                            <span id="js-modal-actors"></span>
+                        </div>
+                        <div>
+                            Titre original :
+                            <span id="js-modal-original-title"></span>
+                        </div>
+                        <div>
+                            Pays :
+                            <span id="js-modal-countries"></span>
+                        </div>
+                        <div class="flex-box-row">
+                            <div>
+                                Score IMDB :
+                                <span id="js-modal-imdb-score"></span>
+                            </div>
+                            <div class="alinea-duration">
+                                Classement :
+                                <span id="js-modal-rated"></span>
+                            </div>
+                            <div class="alinea-duration">
+                                Box-office mondial :
+                                <span id="js-modal-worldwide-gross-income"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-modal-synopsis">
+                    <div class="a-synopsis">
+                         Synopsis :
+                    </div>
+                    <span id="js-modal-long-description"></span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="static/js/carrousel.js"></script>
+    <script src="static/js/main.js"></script>
+    <script src="static/js/modal.js"></script>
+</body>
+</html>
