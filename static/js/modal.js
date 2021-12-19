@@ -6,7 +6,7 @@ async function openModal (idMovie) {
     movieData = await loadMovieData(idMovie); // dans "main.js"
     modalMovie = await loadModalMovie(movieData, modalPattern);
     return displayModal(modalMovie);
-};
+}
 
 
 async function loadModalMovie(movieData, modalPattern) {
@@ -40,30 +40,30 @@ async function loadModalMovie(movieData, modalPattern) {
         movieData.long_description;
     modalMovie = modalPattern;
     return modalMovie;
-};
+}
 
 function heuresMinutes(duration) {
     heures = Math.floor(duration / 60);
     minutes = duration % heures;
     if (minutes < 10) {
         minutes = "0" + minutes;
-    };
+    }
     return heures + "h " + minutes + "min";
-};
+}
 
 function shortRatedNGross(data) {
     if (data === null || data === "none") {
         return "Inconnu";
-    }else {
+    } else {
         var test1 = data.toString().includes("Not rated");
         var test2 = data.toString().includes("unkown");
         if (test1 === true || test2 === true) {
             return "Inconnu";
-        }else {
+        } else {
             return data;
-        };
-    };
-};
+        }
+    }
+}
 
 async function displayModal(modalMovie) {
     previouslyFocusElement = document.querySelector(":focus");
@@ -74,7 +74,7 @@ async function displayModal(modalMovie) {
     modalMovie.addEventListener("click", closeModal);
     modalMovie.querySelector(".js-modal-stop") // Empêche fermeture quand clique
         .addEventListener("click", stopPropagation); // dans fenêtre modal.
-};
+}
 
 function closeModal() {
     var modalMovie = document.querySelector("#js-modal-pattern");
@@ -83,6 +83,7 @@ function closeModal() {
     modalMovie.removeEventListener("click", closeModal);
     modalMovie.querySelector(".js-modal-stop")
         .removeEventListener("click", stopPropagation);
+
     const hideModal = function() {
         modalMovie.removeAttribute("style");
         modalMovie.removeEventListener("animationend", hideModal)
@@ -90,11 +91,11 @@ function closeModal() {
         modalDisplay = "no"
     };
     modalMovie.addEventListener("animationend", hideModal);
-};
+}
 
 function stopPropagation(e) {
     e.stopPropagation();
-};
+}
 
 function resetModal(modalMovie) {
     modalMovie.querySelector("#js-modal-title").innerText = "";
@@ -113,18 +114,18 @@ function resetModal(modalMovie) {
     modalMovie.querySelector("#js-modal-long-description").innerText = "";
     modalPattern = modalMovie;
     return modalPattern;
-};
+}
 
 window.addEventListener("keydown", function(e) {
     if (e.key === "Escape" || e.key === "Esc") {
         closeModal(e);
-    };
+    }
     if (e.key === "Tab" && modalDisplay === "yes") {
         focusInModal(e);
-    };
-});
+    }
+})
 
 // Bloque le focus dans la fenêtre modal lorsque ouverte.
 function focusInModal(e) {
     e.preventDefault();
-};
+}

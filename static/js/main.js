@@ -3,32 +3,33 @@ var numberCategories;
 // 0. Définir les catégories et les adresses URLS
 async function choosingCategories() {
     var allCategories = "no";
+    var genres;
     if (allCategories === "yes") {
-        var genres = translateNameCategory("justListGenres");
+        genres = translateNameCategory("justListGenres");
     } else {
         // Autant de catégories que souhaités
         // Ne pas répéter une catégories
-        var genres = ["", "biography", "sci-fi", "adventure"];
-    };
+        genres = ["", "biography", "sci-fi", "adventure"];
+    }
     numberCategories = genres.length;
     for (const genre of genres) {
         const countCategory = genres.indexOf(genre);
-        await urlsCategory( genre, countCategory);
-    };
-};
+        await urlsCategory(genre, countCategory);
+    }
+}
 
 async function urlsCategory(genre, countCategory) {
     for (let i = 1; i <= 2; i++) {
         const url = `http://localhost:8000/api/v1/titles/?genre=${genre}` + 
                     `&page=${i}&sort_by=-imdb_score%2C-votes`;
         const countPage = i;
-        await loadSortCategoryData(url, genre, countCategory, countPage);
-    };
-};
+        await getSortCategoryData(url, genre, countCategory, countPage);
+    }
+}
 
 
 // 1. Télécharger les informations des classement et des films depuis le serveur
-async function loadSortCategoryData(url, genre, countCategory, countPage) {
+async function getSortCategoryData(url, genre, countCategory, countPage) {
     await fetch(url, {
         method: "GET",
         headers: {
@@ -39,9 +40,9 @@ async function loadSortCategoryData(url, genre, countCategory, countPage) {
         .then(res => res.json())
         .then(json => displayCategoryData(json, genre, countCategory, countPage))
         .catch(err => console.log(err));
-};
+}
 
-async function loadMovieData(idMovie) {
+async function getMovieData(idMovie) {
     var movieData;
     await fetch(`http://localhost:8000/api/v1/titles/${idMovie}`, {
         method: "GET",
@@ -54,7 +55,7 @@ async function loadMovieData(idMovie) {
     .then(json => {movieData = json;})
     .catch(err => console.log(err));
     return movieData;
-};
+}
 
 
 
@@ -96,9 +97,9 @@ async function createHTMLCategories(countCategory, countPage) {
                 </div>
             </section>
             `;
-        };
-    };
-};
+        }
+    }
+}
 
 async function displayCategoryData(json, genre, countCategory, countPage) {
     createHTMLCategories(countCategory, countPage);
@@ -106,31 +107,31 @@ async function displayCategoryData(json, genre, countCategory, countPage) {
     if (countCategory === "00") {
         if (countPage === 1) {
             let idBestMovie = json.results[0].id;
-            let bestMovieData = await loadMovieData(idBestMovie);
+            let bestMovieData = await getMovieData(idBestMovie);
             displayBestMovie(bestMovieData);
-        };
-    }else {
+        }
+    } else {
         if (countPage === 1) {
             if (genre === "") {
                 var idxStart = 1;
-            }else {
+            } else {
                 var idxStart = 0;
-            };
+            }
             var countMovie = 4;
             displayNameCategory(genre, countCategory);
             displayPosterMovies(json, countCategory, idxStart, countMovie);
-        };
+        }
         if (countPage === 2) {
             var idxStart = 0;
             if (genre === "") {
                 var countMovie = 2;
-            }else {
+            } else {
                 var countMovie = 1;
-            };
+            }
             displayPosterMovies(json, countCategory, idxStart, countMovie);
-        };
-    };
-};
+        }
+    }
+}
 
 function displayBestMovie(bestMovieData) {
     document.getElementById("title-best-movie").innerText = 
@@ -143,23 +144,24 @@ function displayBestMovie(bestMovieData) {
     document.getElementById("js-poster-best-movie").setAttribute(
         "alt", `poster of ${bestMovieData.original_title}`
     );
-    document.getElementById("js-show-best-movie")
-    .setAttribute("onclick", `openModal('${bestMovieData.id}')`)
-};
+    document.getElementById("js-show-best-movie").setAttribute(
+        "onclick", `openModal('${bestMovieData.id}')`
+    );
+}
 
 function displayNameCategory(genre, countCategory) {
     let nameCategoryContainer = 
         document.getElementById(`title-category-${countCategory}`);
     let translation = translateNameCategory(genre);
     nameCategoryContainer.innerHTML = `Films ${translation}`;
-};
+}
 
 async function displayPosterMovies(json, countCategory, idxStart, countMovie) {
     let categoryContainer = 
         document.getElementById(`js-carrousel-${countCategory}`);
-    for (let i = idxStart; i <= countMovie; i++) {
+    for (let i = idxStart; i <= countMovie; i ++) {
         let film = json.results[i];
-        let movieData = await loadMovieData(film.id);
+        let movieData = await getMovieData(film.id);
         let originalTitle = movieData.original_title;
         categoryContainer.innerHTML += `
             <button id="${film.id}" class="js-movie-container" 
@@ -168,8 +170,8 @@ async function displayPosterMovies(json, countCategory, idxStart, countMovie) {
                 alt="poster of «${originalTitle}»" />
             </button>
         `
-    };
-};
+    }
+}
 
 
 
@@ -213,11 +215,11 @@ function translateNameCategory(genre) {
         return Object.keys(translation)
     } else {
         return translation[genre];
-    };
-};
+    }
+}
 
 function main() {
     urlsCategory("", "00");
     choosingCategories();
     initializeLocationTrackingCarrousel(numberCategories);
-};
+}
