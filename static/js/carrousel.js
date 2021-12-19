@@ -1,8 +1,8 @@
 var locationCarrousel = {};
 
-function initializeLocationTrackingCarrousel () {
-for (let i=0; i < 4; i++) {
-    locationCarrousel[i] = 0;
+function initializeLocationTrackingCarrousel (numberCategories) {
+    for (let i=0; i < numberCategories; i++) {
+        locationCarrousel[i] = 0;
     };
 };
 
@@ -16,6 +16,7 @@ function moveCarrouselLeft(idButton) {
         let shift = 155 * locationCarrousel[countCategory];
         carrouselToMove.style.right = `${shift}px`;
     };
+    opacityArrow(countCategory, locationCarrousel[countCategory]);
 };
 
 function moveCarrouselRight(idButton) {
@@ -27,4 +28,23 @@ function moveCarrouselRight(idButton) {
         let shift = 155 * locationCarrousel[countCategory];
         carrouselToMove.style.right = `${shift}px`;
     };
+    opacityArrow(countCategory, locationCarrousel[countCategory]);
 };
+
+function opacityArrow(countCategory, locationCarrousel) {
+    arrowLeft = 
+        document.getElementById(`shift-left-carrousel-${countCategory}`);
+    arrowRight = 
+        document.getElementById(`shift-right-carrousel-${countCategory}`);
+    if (locationCarrousel != 0 && locationCarrousel != 7) {
+        arrowLeft.style.opacity = 1;
+        arrowRight.style.opacity = 1;
+    };
+    if (locationCarrousel === 0) {
+        arrowLeft.style.opacity = 0.6;
+    };
+    if (locationCarrousel === 6) {
+        arrowRight.style.opacity = 0.6;
+    };
+};
+

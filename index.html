@@ -8,7 +8,7 @@
 </head>
 
 <body class="flex-box-column center">
-    <header class="flex-box-row width-1000px" id="header-site">
+    <header id="header-site" class="flex-box-row width-1000px">
         <div>
             <a href="index.html">
                 <img class="logo-site"  alt="Logo de JustStreamIt"
@@ -52,7 +52,6 @@
     <div id="categories" class="flex-box-column width-1000px">
     </div>
 
-
     <div>
         <aside id="js-modal-pattern" class="modal-box flex-box-column center"
         aria-hidden="true">
@@ -63,7 +62,7 @@
                     onclick="closeModal()">
                     X
                     </button>
-                    <h2 id="js-modal-title"> </h2>
+                    <h2 id="js-modal-title" class="modal-text-data"> </h2>
                 </div>
 
                 <div class="flex-box-row">
@@ -75,54 +74,75 @@
                         <div class="flex-box-row">
                             <div>
                                 Sorti en salle le :
-                                <span id="js-modal-date-published"></span>
+                                <span id="js-modal-date-published"
+                                class="modal-text-data">
+                                </span>
                             </div>
                             <div class="alinea-duration">
                                 Durrée :
-                                <span id="js-modal-duration"></span>
+                                <span id="js-modal-duration"
+                                class="modal-text-data">
+                                </span>
                             </div>
                         </div>
                         <div>
                             Genres :
-                            <span id="js-modal-genres"></span>
+                            <span id="js-modal-genres"
+                            class="modal-text-data">
+                            </span>
                         </div>
                         <div>
                             Réalisateurs :
-                            <span id="js-modal-directors"></span>
+                            <span id="js-modal-directors"
+                            class="modal-text-data">
+                            </span>
                         </div>
                         <div>
                             Acteurs :
-                            <span id="js-modal-actors"></span>
+                            <span id="js-modal-actors" class="modal-text-data">
+                            </span>
                         </div>
                         <div>
                             Titre original :
-                            <span id="js-modal-original-title"></span>
+                            <span id="js-modal-original-title"
+                            class="modal-text-data">
+                            </span>
                         </div>
                         <div>
                             Pays :
-                            <span id="js-modal-countries"></span>
+                            <span id="js-modal-countries"
+                            class="modal-text-data">
+                            </span>
                         </div>
                         <div class="flex-box-row">
                             <div>
                                 Score IMDB :
-                                <span id="js-modal-imdb-score"></span>
+                                <span id="js-modal-imdb-score"
+                                class="modal-text-data">
+                                </span>
                             </div>
                             <div class="alinea-duration">
                                 Classement :
-                                <span id="js-modal-rated"></span>
+                                <span id="js-modal-rated"
+                                class="modal-text-data">
+                                </span>
                             </div>
                             <div class="alinea-duration">
                                 Box-office mondial :
-                                <span id="js-modal-worldwide-gross-income"></span>
+                                <span id="js-modal-worldwide-gross-income"
+                                class="modal-text-data">
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="box-modal-synopsis">
-                    <div class="a-synopsis">
+                    <div class="modal-synopsis-description">
                          Synopsis :
                     </div>
-                    <span id="js-modal-long-description"></span>
+                    <span id="js-modal-long-description"
+                    class="modal-text-data alinea-duration">
+                    </span>
                 </div>
             </div>
         </aside>

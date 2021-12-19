@@ -1,9 +1,19 @@
+var numberCategories;
+
 // 0. Définir les catégories et les adresses URLS
 async function choosingCategories() {
-    const genres = ["", "biography", "sci-fi", "adventure"]; // maximun 4 genres. Idéalement 4.
+    var allCategories = "no";
+    if (allCategories === "yes") {
+        var genres = translateNameCategory("justListGenres");
+    } else {
+        // Autant de catégories que souhaités
+        // Ne pas répéter une catégories
+        var genres = ["", "biography", "sci-fi", "adventure"];
+    };
+    numberCategories = genres.length;
     for (const genre of genres) {
         const countCategory = genres.indexOf(genre);
-        await urlsCategory(genre, countCategory);
+        await urlsCategory( genre, countCategory);
     };
 };
 
@@ -27,7 +37,7 @@ async function loadSortCategoryData(url, genre, countCategory, countPage) {
         }
     })
         .then(res => res.json())
-        .then(json => createHTMLCategories(json, genre, countCategory, countPage))
+        .then(json => displayCategoryData(json, genre, countCategory, countPage))
         .catch(err => console.log(err));
 };
 
@@ -49,29 +59,35 @@ async function loadMovieData(idMovie) {
 
 
 // 2. & 3. Création et chargement de blocs HTML dans la page HTML
-async function createHTMLCategories(json, genre, countCategory, countPage) {
+async function createHTMLCategories(countCategory, countPage) {
     if (countCategory !== "00") {
         if (countPage === 1) {
             document.getElementById("categories").innerHTML += `
             <section>
-                <h1 id="title-category-${countCategory}" class="title-category"></h1>
-                <div class="flex-box-row container-movies-and-nav">
+                <h1 id="title-category-${countCategory}" 
+                class="js-title-category">
+                </h1>
+                <div class="flex-box-row js-container-movies-and-nav">
                     <nav class="nav-carrousel-left">
                         <button id="shift-left-carrousel-${countCategory}" 
-                        class="flex-box-row button-nav" onclick="moveCarrouselLeft(id)">
+                        class="flex-box-row button-nav-left"
+                        onclick="moveCarrouselLeft(id)">
                             <div class="nav-art-generality arrow-left"></div>
                             <div class="nav-art-generality rectangle"></div>
                             <div class="nav-art-generality rectangle"></div>
                         </button>
                     </nav>
 
-                    <div class="flex-box-row visible-movies-category">
-                        <div id="js-carrousel-${countCategory}" class="flex-box-row movable"></div>
+                    <div class="flex-box-row js-visible-movies-category">
+                        <div id="js-carrousel-${countCategory}" 
+                        class="flex-box-row js-movable">
+                        </div>
                     </div>
 
                     <nav class="nav-carrousel-right">
                         <button id="shift-right-carrousel-${countCategory}"
-                        class="flex-box-row button-nav" onclick="moveCarrouselRight(id)">
+                        class="flex-box-row button-nav-right"
+                        onclick="moveCarrouselRight(id)">
                             <div class="nav-art-generality rectangle"></div>
                             <div class="nav-art-generality rectangle"></div>
                             <div class="nav-art-generality arrow-right"></div>
@@ -80,16 +96,14 @@ async function createHTMLCategories(json, genre, countCategory, countPage) {
                 </div>
             </section>
             `;
-        }
-    }
-    displayCategoryData(json, genre, countCategory, countPage);
+        };
+    };
 };
 
 async function displayCategoryData(json, genre, countCategory, countPage) {
-    // Serait intéréssant d'ajouter une fonction ici (avant le remplissage) 
-    // qui ajouterait le code HTML de la structure des catégories. 
-    // On aurait alors autant que catégories que renseignées dans choosingCategories().
-    if (countCategory === "00") { // CountCategory = "00" correspond à la section meilleur film.
+    createHTMLCategories(countCategory, countPage);
+    // CountCategory = "00" correspond à la section meilleur film.
+    if (countCategory === "00") {
         if (countPage === 1) {
             let idBestMovie = json.results[0].id;
             let bestMovieData = await loadMovieData(idBestMovie);
@@ -148,9 +162,9 @@ async function displayPosterMovies(json, countCategory, idxStart, countMovie) {
         let movieData = await loadMovieData(film.id);
         let originalTitle = movieData.original_title;
         categoryContainer.innerHTML += `
-            <button id="${film.id}" class="movie_container" 
+            <button id="${film.id}" class="js-movie-container" 
             title="${originalTitle}" onclick="openModal(${film.id})">
-                <img class="movie_poster_container" src="${film.image_url}"
+                <img class="js-movie-poster-container" src="${film.image_url}"
                 alt="poster of «${originalTitle}»" />
             </button>
         `
@@ -159,12 +173,10 @@ async function displayPosterMovies(json, countCategory, idxStart, countMovie) {
 
 
 
-
-
-
 // 4. Ajouter les évènements au clic sur les éléments Html
 
 document.addEventListener('DOMContentLoaded', main());
+
 
 
 // 5. Autres
@@ -197,13 +209,15 @@ function translateNameCategory(genre) {
         "war": "de guerre",
         "western": "western"
     };
-    return translation[genre];
+    if (genre == "justListGenres") {
+        return Object.keys(translation)
+    } else {
+        return translation[genre];
+    };
 };
 
 function main() {
     urlsCategory("", "00");
     choosingCategories();
-    initializeLocationTrackingCarrousel();
+    initializeLocationTrackingCarrousel(numberCategories);
 };
-
-

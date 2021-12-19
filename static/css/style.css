@@ -10,6 +10,14 @@ body {
     margin-top: 20px;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: #64b164;
+}
+
 .flex-box-column {
     display: flex;
     flex-direction: column
@@ -82,7 +90,7 @@ body {
 
 .modal-box {
     position: fixed;
-    color: rgb(200, 200, 200); /* TODO: blanc pour key ; vert pour values */
+    color: whitesmoke;
     top: 0px;
     left: 0px;
     width: 100%;
@@ -102,6 +110,10 @@ body {
     background-color: #353535;
     border: 2px black solid;
     animation: slideFromTop .4s both;
+}
+
+.modal-text-data {
+    color: #64b164;
 }
 
 .modal-box[aria-hidden="true"] {
@@ -132,9 +144,6 @@ body {
     to { transform: translateY(50px); };
 }
 
-
-
-/* Relating to data movie in modal window */
 .modal-head {
     position: relative;
     align-items: center;
@@ -174,13 +183,15 @@ body {
 }
 
 .box-modal-synopsis {
-    margin-top: 20px;
+    margin: 20px;
 }
 
-.key_synopsis {
+.modal-synopsis-description {
     text-decoration: underline;
     margin-bottom: 15px;
 }
+
+
 
 
 
@@ -218,7 +229,14 @@ body {
     margin-left: 9px;
 }
 
-.button-nav {
+.button-nav-left {
+    background: none;
+    border: none;
+    padding: 0px;
+    opacity: 0.6;
+}
+
+.button-nav-right {
     background: none;
     border: none;
     padding: 0px;
@@ -251,7 +269,7 @@ body {
 
 
 /* Other category*/
-.title-category {
+.js-title-category {
     text-align: center;
     color: black;
     font-size: 1.8em;
@@ -259,24 +277,24 @@ body {
     text-decoration: underline;
 }
 
-.container-movies-and-nav {
+.js-container-movies-and-nav {
     align-items: center;
     max-width: 1000px;
     overflow: hidden;
 }
 
-.visible-movies-category {
+.js-visible-movies-category {
     min-width: 153px;
     max-width: 880px;
     overflow: hidden;
 }
 
-.movable {
+.js-movable {
     position: relative;
     right: 0px;
 }
 
-.movie_container {  
+.js-movie-container {  
     height: 200px;
     width: auto;
     border: 1px black solid;
@@ -286,74 +304,7 @@ body {
     background: none;
 }
 
-.movie_poster_container {
+.js-movie-poster-container {
     height: 200px;
     width: auto;
-}
-
-
-
-/* À ranger */
-.synopsis {
-    font-size: 1.1em;
-    text-indent: 40px;
-}
-
-a {
-    text-decoration: none;
-}
-
-a:visited {
-    color: #64b164;
-}
-
-
-
-/* temporaire */
-.temporaire_green {
-    border: 1px green solid;
-}
-
-.temporaire_red {
-    border: 1px red solid;
-}
-
-.temporaire_yellow {
-    border: 1px yellow solid;
-}
-
-.temporaire_violet {
-    border: 1px violet solid;
-}
-
-.temporaire_bg  {
-    border: 1px green solid;
-    background: black;
-}
-
-
-
-*:focus {
-    box-shadow: 0px 0px 4px red;
-}
-
-.box_movie {
-    background: red;
-    z-index: 0;
-}
-
-.hidden_button {
-    position: relative;
-    z-index: 1;
-    top: 0px;
-    left: 0px;
-    opacity: 0;
-}
-
-/* #test {
-    background: url(../images/arrow.png);
-} */
-
-#shift-left-carrousel-0 {
-    background: url(../images/arrow.png);
 }
