@@ -213,13 +213,6 @@ a:visited {
     clip-path: polygon(100% 100%, 100% 0%, 0% 50%);
 }
 
-.arrow-right {
-    clip-path: polygon(0% 0%, 0% 100%, 100% 50%);
-}
-
-.rectangle {
-    clip-path: polygon(100% 25%, 0% 25%, 0% 75%, 100% 75%);
-}
 
 .nav-carrousel-left {
     margin-right: 9px;
@@ -230,16 +223,24 @@ a:visited {
 }
 
 .button-nav-left {
-    background: none;
+    background: black;
     border: none;
     padding: 0px;
     opacity: 0.6;
+    width: 60px;
+    height: 32px;
+    clip-path: polygon(0% 50%, 40% 0%, 40% 20%,
+        100% 20%, 100% 80%, 40% 80%, 40% 100%);
 }
 
 .button-nav-right {
-    background: none;
+    background: black;
     border: none;
     padding: 0px;
+    width: 60px;
+    height: 32px;
+    clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 
+        100% 50%, 60% 100%, 60% 80%, 0% 80%);
 }
 
 /* Category : Best movie */

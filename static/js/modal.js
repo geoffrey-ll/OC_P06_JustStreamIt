@@ -3,7 +3,7 @@ let previouslyFocusElement = null;
 
 async function openModal (idMovie) {
     const modalPattern = document.querySelector("#js-modal-pattern");
-    movieData = await loadMovieData(idMovie); // dans "main.js"
+    movieData = await getMovieData(idMovie); // dans "main.js"
     modalMovie = await loadModalMovie(movieData, modalPattern);
     return displayModal(modalMovie);
 }

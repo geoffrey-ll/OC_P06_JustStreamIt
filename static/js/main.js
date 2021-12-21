@@ -71,11 +71,8 @@ async function createHTMLCategories(countCategory, countPage) {
                 <div class="flex-box-row js-container-movies-and-nav">
                     <nav class="nav-carrousel-left">
                         <button id="shift-left-carrousel-${countCategory}" 
-                        class="flex-box-row button-nav-left"
+                        class="button-nav-left"
                         onclick="moveCarrouselLeft(id)">
-                            <div class="nav-art-generality arrow-left"></div>
-                            <div class="nav-art-generality rectangle"></div>
-                            <div class="nav-art-generality rectangle"></div>
                         </button>
                     </nav>
 
@@ -87,11 +84,8 @@ async function createHTMLCategories(countCategory, countPage) {
 
                     <nav class="nav-carrousel-right">
                         <button id="shift-right-carrousel-${countCategory}"
-                        class="flex-box-row button-nav-right"
+                        class="button-nav-right"
                         onclick="moveCarrouselRight(id)">
-                            <div class="nav-art-generality rectangle"></div>
-                            <div class="nav-art-generality rectangle"></div>
-                            <div class="nav-art-generality arrow-right"></div>
                         </button>
                     </nav>
                 </div>
